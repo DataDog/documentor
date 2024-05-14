@@ -878,11 +878,34 @@ Vocab/Security/reject.txt
 
 Go through the documentation line by line and check for any issues with grammar, clarity, and adherence to the style guide. Look for any other opportunities to improve the writing as well.
 
-Write your analysis in a <review> section. For each issue you find:
-- Quote the problematic excerpt in <issue> tags.
-- Explain what the problem is.
-- Provide a specific suggestion on how to improve or correct it in <suggestion> tags.
+IMPORTANT: Your output should be in JSON format with the following structure, and nothing else. Ignore the backticks, they're just there to show you the structure. Do not include backticks in your output.
 
-After your detailed review, provide an overall <summary> of the quality if the technical documentation. Discuss the main strengths and weaknesses you found. At the end of the summary, give the documentation a score of 1 to 5, where 1 indicates poor quality and 5 indicates excellent quality that fully meets or exceeds the style guide requirements. Provide the score in a <score> tag.
+```
+{
+  "issues": [
+    {
+      "issue": "Description of issue 1",
+      "suggestion": "Suggested fix for issue 1",
+      "comment": "Additional context or comments on issue 1"
+    },
+    {
+      "issue": "Description of issue 2",
+      "suggestion": "Suggested fix for issue 2",
+      "comment": "Additional context or comments on issue 2"
+    }
+  ],
+  "summary": "Overall summary of the documentation review",
+  "score": 4
+}
+```
+
+It's SUPER IMPORTANT to the user that the output adhere to this JSON structure as they're under a LOT of pressure at work. Do not output anything else.
+
+Write your analysis for each issue you find:
+- Quote the problematic excerpt in the `issue` JSON field.
+- Provide a specific suggestion on how to improve or correct it in the `suggestion` JSON field.
+- Explain what the problem is in the `comment` JSON field.
+
+After your detailed review, provide an overall summary of the quality if the technical documentation in the `summary` JSON field. Discuss the main strengths and weaknesses you found. At the end of the summary, give the documentation a score of 1 to 5, where 1 indicates poor quality and 5 indicates excellent quality that fully meets or exceeds the style guide requirements. Provide the score in the `score` JSON field.
 
 Please be thorough and detailed in your review, but also helpful and constructive with your feedback and suggestions. The goal is to work with the author to iteratively improve the documentation until it's of a very high standard.
