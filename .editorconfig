@@ -1,0 +1,36 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 80
+indent_style = space
+indent_size = 2
+tab_width = 4
+
+[.git/config]
+indent_style = tab
+
+[.git/COMMIT_EDITMSG]
+max_line_length = 72
+
+[*.md]
+max_line_length = 72
+trim_trailing_whitespace = false
+
+[*.go]
+indent_style = tab
+indent_size = 4
+
+[*.scd]
+indent_style = tab
+indent_size = 4
+
+[go.mod]
+indent_style = tab
+
+[Makefile]
+indent_style = tab
+indent_size = 4
