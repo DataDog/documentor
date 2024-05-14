@@ -7,7 +7,7 @@ provide feedback on how to improve it.
 It should empower documentation writers to create better documentation,
 while also providing a way to automate parts of the review process.
 
-> ![WARNING]
+> [!WARNING]
 > This project is a PoC and is still in early stages of development. It
 > is not ready for production use and doesn't use Datadog's OpenAI proxy
 > server yet.
