@@ -34,7 +34,7 @@ sudo make install
 ```bash
 $ documentor --help
 NAME:
-   documentor - easy-to-use documentation review tool
+   documentor - review technical documentation with the power of AI
 
 USAGE:
    documentor [global options] [file]
