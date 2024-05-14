@@ -4,19 +4,19 @@
 application that uses the OpenAI GPT-4 API to review documentation and
 provide feedback on how to improve it.
 
-It should empower documentation writers to create better documentation,
-while also providing a way to automate parts of the review process.
+It assists documentation writers in creating better documentation by
+automating parts of the review process.
 
 > [!WARNING]
 > This project is a PoC and is still in early stages of development. It
-> is not ready for production use and doesn't use Datadog's OpenAI proxy
-> server yet.
+> is not ready for production use, and doesn't use Datadog's OpenAI
+> proxy server yet.
 
-## Instalation
+## Installation
 
 ### From source
 
-First install the dependencies:
+First, ensure that the following dependencies are installed:
 
 - Go 1.22 or above.
 - make.
@@ -48,13 +48,14 @@ GLOBAL OPTIONS:
    --version, -v          print the version
 ```
 
-See _documentor(1)_ after installing for more information.
+Refer to the _documentor(1)_ manpage after installation for more
+information.
 
 ## Contributing
 
-Anyone can help make `documentor` better. Check out [the contribution
+Anyone can help make `documentor` better. Refer to the [contribution
 guidelines](CONTRIBUTING.md) for more information.
 
 ---
 
-Released under the [Apache-2.0 License](LICENSE.md).
+This project is released under the [Apache-2.0 License](LICENSE.md).
