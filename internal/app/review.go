@@ -62,10 +62,16 @@ func ReviewAction(ctx *cli.Context) error {
 		return errno.New(errno.ExitIO, err)
 	}
 
+	prompt := openai.MarkdownPrompt
+
+	if ctx.Bool("json") {
+		prompt = openai.JSONPrompt
+	}
+
 	var (
 		content = xunsafe.BytesToString(data)
 		client  = openai.NewClient(key)
-		req     = openai.NewRequest(content)
+		req     = openai.NewRequest(content, prompt)
 	)
 
 	resp, err := client.Do(ctx.Context, req)

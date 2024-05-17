@@ -11,12 +11,15 @@ import (
 	"github.com/sashabaranov/go-openai"
 )
 
-//go:embed data/prompt.txt
-var _systemPrompt string
+//go:embed data/prompt-markdown.txt
+var MarkdownPrompt string
+
+//go:embed data/prompt-json.txt
+var JSONPrompt string
 
 // NewRequest creates a chat completion request with streaming support for the
 // OpenAI API given the content of the chat.
-func NewRequest(content string) openai.ChatCompletionRequest {
+func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
 	return openai.ChatCompletionRequest{
 		Model: openai.GPT4o,
 		Messages: []openai.ChatCompletionMessage{
@@ -29,7 +32,7 @@ func NewRequest(content string) openai.ChatCompletionRequest {
 			},
 			{
 				Role:    openai.ChatMessageRoleSystem,
-				Content: _systemPrompt,
+				Content: systemPrompt,
 			},
 		},
 		Temperature: 0.8,

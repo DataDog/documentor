@@ -33,6 +33,14 @@ func Run(args []string) int {
 				"DOCUMENTOR_KEY",
 			},
 		},
+		&cli.BoolFlag{
+			Name:    "json",
+			Aliases: []string{"j"},
+			Usage:   "output the results in JSON format",
+			EnvVars: []string{
+				"DOCUMENTOR_JSON",
+			},
+		},
 	}
 
 	app.Action = ReviewAction
