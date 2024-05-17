@@ -20,6 +20,11 @@ on how to improve it.
 	Specifies the OpenAI API key to use for authentication. Can be set with the
 	DOCUMENTOR_KEY environment variable.
 
+*-j*, *--json*
+	Whether to output the review results in JSON format. If not specified, the
+	results are output in a human-readable format. Can be set with the
+	DOCUMENTOR_JSON environment variable.
+
 *-h*, *--help*
 	Shows help message and quits.
 
@@ -36,9 +41,17 @@ on how to improve it.
 *DOCUMENTOR_KEY*
 	Specifies the OpenAI API key to use for authentication.
 
+*DOCUMENTOR_JSON*
+	Whether to output the review results in JSON format. If not empty, the
+	results are output in JSON format; otherwise, they are output in a
+	human-readable format.
+
 # OUTPUT
 
-*documentor* outputs the review results in JSON format. The output includes:
+*documentor* outputs the review results in Markdown by default. If the *--json*
+option is specified, the results are output in JSON format.
+
+The output includes:
 
 - *issues*: An array of issue objects, each containing:
     - *issue*: A description of the identified issue.
@@ -83,6 +96,9 @@ on how to improve it.
 
 *2. Review a documentation file with the API key set in the environment*
 	$ documentor documentation.md
+
+*3. Review a documentation file and output the results in JSON format*
+	$ documentor --json documentation.md
 
 # AUTHORS
 
