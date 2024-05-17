@@ -26,10 +26,55 @@ on how to improve it.
 *-v*, *--version*
 	Shows version information and quits.
 
+# ARGUMENTS
+
+<*FILE*>
+	The path to a documentation file to review.
+
 # ENVIROMENT
 
 *DOCUMENTOR_KEY*
 	Specifies the OpenAI API key to use for authentication.
+
+# OUTPUT
+
+*documentor* outputs the review results in JSON format. The output includes:
+
+- *issues*: An array of issue objects, each containing:
+    - *issue*: A description of the identified issue.
+    - *suggestion*: A suggested fix for the issue.
+    - *comment*: Additional context or comments on the issue.
+- *summary*: An overall summary of the documentation review.
+- *score*: An integer score reflecting the quality of the documentation.
+
+# RETURN VALUES
+
+*0*
+	Success.
+
+*1*
+	Unknown error.
+
+*2*
+	Incorrect usage of the application.
+
+*3*
+	I/O error when reading a file.
+
+*4*
+	File not found.
+
+*5*
+	Permission denied when reading a file.
+
+*6*
+	Error when communicating with the OpenAI API.
+
+*7*
+	Missing API key.
+
+*8*
+	Timed out when communicating with the OpenAI API.
 
 # EXAMPLES
 
