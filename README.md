@@ -22,6 +22,10 @@ First, ensure that the following dependencies are installed:
 - make.
 - [scdoc](https://git.sr.ht/~sircmpwn/scdoc).
 
+Optionally, you can install
+[glow](https://github.com/charmbracelet/glow) to render the Markdown
+output with more style.
+
 Then compile and install:
 
 ```bash
