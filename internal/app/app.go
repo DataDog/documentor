@@ -7,9 +7,11 @@
 package app
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
+	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/meta"
 	"github.com/urfave/cli/v2"
 )
@@ -30,16 +32,23 @@ func Run(args []string) int {
 			EnvVars: []string{
 				"DOCUMENTOR_KEY",
 			},
-			Required: true,
 		},
 	}
 
 	app.Action = ReviewAction
 
 	if err := app.Run(args); err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		var exitErr *errno.Error
 
-		return 1
+		if errors.As(err, &exitErr) {
+			fmt.Fprintf(os.Stderr, "error: %q\n", err)
+
+			return exitErr.Code()
+		}
+
+		fmt.Fprintf(os.Stderr, "error: unknown error: %q\n", err)
+
+		return int(errno.ExitError)
 	}
 
 	return 0
