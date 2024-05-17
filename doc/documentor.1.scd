@@ -100,6 +100,12 @@ The output includes:
 *3. Review a documentation file and output the results in JSON format*
 	$ documentor --json documentation.md
 
+*4. Save the output to a file*
+	$ documentor documentation.md >> review.md
+
+*5. Format the default Markdown output with glow*
+	$ documentor documentation.md | glow
+
 # AUTHORS
 
 Maintained by James Pond <james.pond@datadoghq.com>
