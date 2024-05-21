@@ -20,7 +20,7 @@ var JSONPrompt string
 // NewRequest creates a chat completion request with streaming support for the
 // OpenAI API given the content of the chat.
 func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
-	return openai.ChatCompletionRequest{
+	req := openai.ChatCompletionRequest{
 		Model: openai.GPT4o,
 		Messages: []openai.ChatCompletionMessage{
 			{
@@ -38,4 +38,12 @@ func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
 		Temperature: 0.8,
 		Stream:      true,
 	}
+
+	if systemPrompt == JSONPrompt {
+		req.ResponseFormat = &openai.ChatCompletionResponseFormat{
+			Type: openai.ChatCompletionResponseFormatTypeJSONObject,
+		}
+	}
+
+	return req
 }
