@@ -41,9 +41,9 @@ func ReviewAction(ctx *cli.Context) error {
 	}
 
 	var (
-		key       = ctx.String("key")
-		temperate = ctx.Float64("temperature")
-		file      = ctx.Args().Get(0)
+		key         = ctx.String("key")
+		temperature = ctx.Float64("temperature")
+		file        = ctx.Args().Get(0)
 	)
 
 	if key == "" {
@@ -66,7 +66,7 @@ func ReviewAction(ctx *cli.Context) error {
 	var (
 		content = xunsafe.BytesToString(data)
 		client  = openai.NewClient(key)
-		req     = openai.NewRequest(content, openai.MarkdownPrompt, float32(temperate))
+		req     = openai.NewRequest(content, openai.MarkdownPrompt, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)
