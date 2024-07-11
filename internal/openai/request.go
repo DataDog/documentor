@@ -11,7 +11,7 @@ import (
 	"github.com/sashabaranov/go-openai"
 )
 
-//go:embed data/prompt-markdown.txt
+//go:embed data/review-prompt.txt
 var MarkdownPrompt string
 
 // NewRequest creates a chat completion request with streaming support for the
