@@ -42,9 +42,10 @@ func ReviewAction(ctx *cli.Context) error {
 	}
 
 	var (
-		key  = ctx.String("key")
-		json = ctx.Bool("json")
-		file = ctx.Args().Get(0)
+		key       = ctx.String("key")
+		json      = ctx.Bool("json")
+		temperate = ctx.Float64("temperature")
+		file      = ctx.Args().Get(0)
 	)
 
 	if key == "" {
@@ -73,10 +74,10 @@ func ReviewAction(ctx *cli.Context) error {
 
 	if json {
 		prompt = openai.JSONPrompt
-		req = openai.NewRequestWithJSON(content, prompt)
+		req = openai.NewRequestWithJSON(content, prompt, float32(temperate))
 	} else {
 		prompt = openai.MarkdownPrompt
-		req = openai.NewRequest(content, prompt)
+		req = openai.NewRequest(content, prompt, float32(temperate))
 	}
 
 	resp, err := client.Do(ctx.Context, req)

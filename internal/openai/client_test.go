@@ -41,7 +41,7 @@ func TestClient_Do(t *testing.T) {
 
 			var (
 				client = openai.NewClient(tt.giveKey)
-				req    = openai.NewRequest("hello world", "respond with 'Hi' and only that")
+				req    = openai.NewRequest("hello world", "respond with 'Hi' and only that", 0.1)
 			)
 
 			_, err := client.Do(context.Background(), req)

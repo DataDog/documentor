@@ -29,7 +29,7 @@ func TestNewRequest(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			req := openai.NewRequest("Say 'Hi' and nothing else.", tt.givePrompt)
+			req := openai.NewRequest("Say 'Hi' and nothing else.", tt.givePrompt, 0.1)
 
 			if req.Model != tt.expectedModel {
 				t.Errorf("Got model %v, want %v", req.Model, tt.expectedModel)
@@ -65,7 +65,7 @@ func TestNewRequestWithJSON(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			req := openai.NewRequestWithJSON("Say 'Hi' and nothing else.", tt.givePrompt)
+			req := openai.NewRequestWithJSON("Say 'Hi' and nothing else.", tt.givePrompt, 0.1)
 
 			if req.Model != tt.expectedModel {
 				t.Errorf("Got model %v, want %v", req.Model, tt.expectedModel)

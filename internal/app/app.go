@@ -33,6 +33,15 @@ func Run(args []string) int {
 				"DOCUMENTOR_KEY",
 			},
 		},
+		&cli.Float64Flag{
+			Name:    "temperature",
+			Aliases: []string{"t"},
+			Usage:   "the temperature to use for the model",
+			Value:   0.8,
+			EnvVars: []string{
+				"DOCUMENTOR_TEMPERATURE",
+			},
+		},
 		&cli.BoolFlag{
 			Name:    "json",
 			Aliases: []string{"j"},

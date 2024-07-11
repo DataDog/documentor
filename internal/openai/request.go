@@ -19,7 +19,7 @@ var JSONPrompt string
 
 // NewRequest creates a chat completion request with streaming support for the
 // OpenAI API given the content of the chat.
-func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
+func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCompletionRequest {
 	req := openai.ChatCompletionRequest{
 		Model: openai.GPT4o,
 		Messages: []openai.ChatCompletionMessage{
@@ -35,7 +35,7 @@ func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
 				Content: systemPrompt,
 			},
 		},
-		Temperature: 0.8,
+		Temperature: temperature,
 		Stream:      true,
 	}
 
@@ -45,8 +45,8 @@ func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
 // NewRequestWithJSON creates a chat completion request with streaming support
 // for the OpenAI API given the content of the chat. The response format from
 // the LLM is JSON.
-func NewRequestWithJSON(content, systemPrompt string) openai.ChatCompletionRequest {
-	req := NewRequest(content, systemPrompt)
+func NewRequestWithJSON(content, systemPrompt string, temperature float32) openai.ChatCompletionRequest {
+	req := NewRequest(content, systemPrompt, temperature)
 	req.ResponseFormat = &openai.ChatCompletionResponseFormat{
 		Type: openai.ChatCompletionResponseFormatTypeJSONObject,
 	}
