@@ -42,14 +42,6 @@ func Run(args []string) int {
 				"DOCUMENTOR_TEMPERATURE",
 			},
 		},
-		&cli.BoolFlag{
-			Name:    "json",
-			Aliases: []string{"j"},
-			Usage:   "output the results in JSON format",
-			EnvVars: []string{
-				"DOCUMENTOR_JSON",
-			},
-		},
 	}
 
 	app.Commands = []*cli.Command{

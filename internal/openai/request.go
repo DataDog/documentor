@@ -14,9 +14,6 @@ import (
 //go:embed data/prompt-markdown.txt
 var MarkdownPrompt string
 
-//go:embed data/prompt-json.txt
-var JSONPrompt string
-
 // NewRequest creates a chat completion request with streaming support for the
 // OpenAI API given the content of the chat.
 func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCompletionRequest {
@@ -37,18 +34,6 @@ func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCo
 		},
 		Temperature: temperature,
 		Stream:      true,
-	}
-
-	return req
-}
-
-// NewRequestWithJSON creates a chat completion request with streaming support
-// for the OpenAI API given the content of the chat. The response format from
-// the LLM is JSON.
-func NewRequestWithJSON(content, systemPrompt string, temperature float32) openai.ChatCompletionRequest {
-	req := NewRequest(content, systemPrompt, temperature)
-	req.ResponseFormat = &openai.ChatCompletionResponseFormat{
-		Type: openai.ChatCompletionResponseFormatTypeJSONObject,
 	}
 
 	return req
