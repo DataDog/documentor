@@ -39,10 +39,16 @@ func NewRequest(content, systemPrompt string) openai.ChatCompletionRequest {
 		Stream:      true,
 	}
 
-	if systemPrompt == JSONPrompt {
-		req.ResponseFormat = &openai.ChatCompletionResponseFormat{
-			Type: openai.ChatCompletionResponseFormatTypeJSONObject,
-		}
+	return req
+}
+
+// NewRequestWithJSON creates a chat completion request with streaming support
+// for the OpenAI API given the content of the chat. The response format from
+// the LLM is JSON.
+func NewRequestWithJSON(content, systemPrompt string) openai.ChatCompletionRequest {
+	req := NewRequest(content, systemPrompt)
+	req.ResponseFormat = &openai.ChatCompletionResponseFormat{
+		Type: openai.ChatCompletionResponseFormatTypeJSONObject,
 	}
 
 	return req

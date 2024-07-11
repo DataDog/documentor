@@ -15,6 +15,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/openai"
+	ai "github.com/sashabaranov/go-openai"
 	"github.com/urfave/cli/v2"
 )
 
@@ -42,6 +43,7 @@ func ReviewAction(ctx *cli.Context) error {
 
 	var (
 		key  = ctx.String("key")
+		json = ctx.Bool("json")
 		file = ctx.Args().Get(0)
 	)
 
@@ -62,17 +64,20 @@ func ReviewAction(ctx *cli.Context) error {
 		return errno.New(errno.ExitIO, err)
 	}
 
-	prompt := openai.MarkdownPrompt
-
-	if ctx.Bool("json") {
-		prompt = openai.JSONPrompt
-	}
-
 	var (
+		prompt  string
+		req     ai.ChatCompletionRequest
 		content = xunsafe.BytesToString(data)
 		client  = openai.NewClient(key)
-		req     = openai.NewRequest(content, prompt)
 	)
+
+	if json {
+		prompt = openai.JSONPrompt
+		req = openai.NewRequestWithJSON(content, prompt)
+	} else {
+		prompt = openai.MarkdownPrompt
+		req = openai.NewRequest(content, prompt)
+	}
 
 	resp, err := client.Do(ctx.Context, req)
 	if err != nil {
