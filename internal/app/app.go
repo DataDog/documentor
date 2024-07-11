@@ -43,7 +43,14 @@ func Run(args []string) int {
 		},
 	}
 
-	app.Action = ReviewAction
+	app.Commands = []*cli.Command{
+		{
+			Name:    "review",
+			Aliases: []string{"r"},
+			Usage:   "review technical documentation",
+			Action:  ReviewAction,
+		},
+	}
 
 	if err := app.Run(args); err != nil {
 		var exitErr *errno.Error
