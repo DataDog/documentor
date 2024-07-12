@@ -51,6 +51,25 @@ func Run(args []string) int {
 			Usage:   "review technical documentation",
 			Action:  ReviewAction,
 		},
+		{
+			Name:    "describe",
+			Aliases: []string{"d"},
+			Usage:   "describe an image and generate alt text",
+			Action:  DescribeAction,
+			Flags: []cli.Flag{
+				&cli.StringFlag{
+					Name:    "context",
+					Aliases: []string{"c"},
+					Usage:   "the context to use for the image",
+				},
+				&cli.BoolFlag{
+					Name:    "filename",
+					Aliases: []string{"f"},
+					Usage:   "whether to generate a filename",
+					Value:   false,
+				},
+			},
+		},
 	}
 
 	if err := app.Run(args); err != nil {

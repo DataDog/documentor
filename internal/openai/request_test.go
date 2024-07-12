@@ -41,3 +41,45 @@ func TestNewRequest(t *testing.T) {
 		})
 	}
 }
+
+func TestNewRequestWithImage(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name            string
+		giveImage       string
+		giveContext     string
+		giveFilename    bool
+		giveTemperature float32
+		expectedModel   string
+	}{
+		{
+			name:            "Image prompt",
+			giveImage:       "base64image1",
+			giveContext:     "Hello World!",
+			giveFilename:    true,
+			giveTemperature: 0.1,
+			expectedModel:   "gpt-4o",
+		},
+	}
+
+	for _, tt := range tests {
+		tt := tt
+
+		t.Run(tt.name, func(t *testing.T) {
+			t.Parallel()
+
+			req := openai.NewRequestWithImage(
+				tt.giveImage,
+				tt.giveContext,
+				"Say 'Hi' and nothing else.",
+				tt.giveFilename,
+				tt.giveTemperature,
+			)
+
+			if req.Model != tt.expectedModel {
+				t.Errorf("Got model %v, want %v", req.Model, tt.expectedModel)
+			}
+		})
+	}
+}
