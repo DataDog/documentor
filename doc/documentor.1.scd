@@ -12,13 +12,18 @@ documentor - review technical documentation with the power of AI
 
 *documentor* is an easy-to-use, efficient, and powerful command-line application
 that uses the power of AI to review technical documentation and provide feedback
-on how to improve it.
+on how to improve it. It can also describe images and generate alt text for
+them.
 
 # OPTIONS
 
-*-k*, *--key* <API_KEY>
+*-k*, *--key* <*API_KEY*>
 	Specifies the OpenAI API key to use for authentication. Can be set with the
 	DOCUMENTOR_KEY environment variable.
+
+*-t*, *--temperature* <*TEMPERATURE*>
+	Specifies the temperature to use when generating text. Default is 0.8. Can
+	be set with the DOCUMENTOR_TEMPERATURE environment variable.
 
 *-h*, *--help*
 	Shows help message and quits.
@@ -31,28 +36,29 @@ on how to improve it.
 *review* <*FILE*>
 	Reviews the documentation in the specified file.
 
+*describe* [*OPTIONS*] <*FILE*>
+	Describes the image and generates alt text for it.
+
+	Options are:
+
+	*-c*, *--context* <*CONTEXT*>
+		Specifies the context around the image.
+
+	*-f*, *--filename*
+		Whether to generate a filename based on the image content.
+
 # ARGUMENTS
 
 <*FILE*>
-	The path to a documentation file to review.
+	The path to a documentation file to review or image to describe.
 
 # ENVIROMENT
 
 *DOCUMENTOR_KEY*
 	Specifies the OpenAI API key to use for authentication.
 
-# OUTPUT
-
-*documentor* outputs the review results in Markdown by default.
-
-The output includes:
-
-- *issues*: An array of issue objects, each containing:
-    - *issue*: A description of the identified issue.
-    - *suggestion*: A suggested fix for the issue.
-    - *comment*: Additional context or comments on the issue.
-- *summary*: An overall summary of the documentation review.
-- *score*: An integer score reflecting the quality of the documentation.
+*DOCUMENTOR_TEMPERATURE*
+	Specifies the temperature to use when generating text. Default is 0.8.
 
 # RETURN VALUES
 
@@ -96,6 +102,15 @@ The output includes:
 
 *4. Format the default Markdown output with glow*
 	$ documentor review documentation.md | glow
+
+*5. Describe an image*
+	$ documentor describe image.png
+
+*6. Describe an image with context*
+	$ documentor describe --context 'This my cat, Mittens.' image.png
+
+*7. Describe an image and generate a filename*
+	$ documentor describe --filename image.png
 
 # AUTHORS
 
