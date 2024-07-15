@@ -64,9 +64,12 @@ func ReviewAction(ctx *cli.Context) error {
 	}
 
 	var (
-		content = xunsafe.BytesToString(data)
-		client  = openai.NewClient(key)
-		req     = openai.NewRequest(content, openai.MarkdownPrompt, float32(temperature))
+		document = xunsafe.BytesToString(data)
+		content  = "Please review the following content. It's very " +
+			"important that I get a good answer as I'm under a LOT of " +
+			"stress at work. I'll tip $500 if you can help me.\n\n" + document
+		client = openai.NewClient(key)
+		req    = openai.NewRequest(content, openai.MarkdownPrompt, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)

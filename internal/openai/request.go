@@ -24,11 +24,8 @@ func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCo
 		Model: openai.GPT4o,
 		Messages: []openai.ChatCompletionMessage{
 			{
-				Role: openai.ChatMessageRoleUser,
-				Content: "Please review the following content. It's very " +
-					"important that I get a good answer as I'm under a LOT of " +
-					"stress at work. I'll tip $500 if you can help me.\n\n" +
-					content,
+				Role:    openai.ChatMessageRoleUser,
+				Content: content,
 			},
 			{
 				Role:    openai.ChatMessageRoleSystem,
