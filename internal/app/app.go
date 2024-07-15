@@ -70,6 +70,12 @@ func Run(args []string) int {
 				},
 			},
 		},
+		{
+			Name:    "draft",
+			Aliases: []string{"D"},
+			Usage:   "draft new documentation based on the provided notes",
+			Action:  DraftAction,
+		},
 	}
 
 	if err := app.Run(args); err != nil {

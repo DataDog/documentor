@@ -17,6 +17,9 @@ var MarkdownPrompt string
 //go:embed data/describe-prompt.txt
 var DescribePrompt string
 
+//go:embed data/draft-prompt.txt
+var DraftPrompt string
+
 // NewRequest creates a chat completion request with streaming support for the
 // OpenAI API given the content of the chat.
 func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCompletionRequest {

@@ -47,10 +47,31 @@ them.
 	*-f*, *--filename*
 		Whether to generate a filename based on the image content.
 
+*draft* <*FILE*>
+	Generates a document based on the notes provided in the specified file.
+
+	For the best results, your notes file should have a clear structure with a
+	specific request and bullet points for each piece of information.
+
+	For example:
+
+	```
+	I need to write technical documentation for a new feature in Datadog. The
+	feature is called "Cool Feature" and it allows users to do something cool.
+
+	- Information about the feature.
+	- More information about the feature.
+	- Even more information about the feature.
+	```
+
+	If you are not satisfied with the generated document, tweak the request part
+	of your notes file and try again.
+
 # ARGUMENTS
 
 <*FILE*>
-	The path to a documentation file to review or image to describe.
+	The path to a documentation file to review, image to describe, or file with
+	notes about a document to draft.
 
 # ENVIROMENT
 
@@ -111,6 +132,9 @@ them.
 
 *7. Describe an image and generate a filename*
 	$ documentor describe --filename image.png
+
+*8. Draft a document based on notes*
+	$ documentor draft notes.md
 
 # AUTHORS
 
