@@ -49,8 +49,8 @@ func DraftAction(ctx *cli.Context) error {
 		file        = ctx.Args().Get(0)
 	)
 
-	if key == "" {
-		return errno.New(errno.ExitUnauthorized, ErrEmptyAPIKey)
+	if !validate.Key(key) {
+		return errno.New(errno.ExitUnauthorized, ErrInvalidAPIKey)
 	}
 
 	if !validate.Filetype(file, []string{"txt", "md"}) {

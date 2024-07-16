@@ -23,9 +23,9 @@ const (
 	// ErrEmptyInput is returned when no file is provided by the user.
 	ErrEmptyInput xerrors.Error = "missing file to review"
 
-	// ErrEmptyAPIKey is returned when the user does not provide an OpenAI API
-	// key.
-	ErrEmptyAPIKey xerrors.Error = "missing OpenAI API key"
+	// ErrInvalidAPIKey is returned when the user does not provide an OpenAI API
+	// key or provides an invalid one.
+	ErrInvalidAPIKey xerrors.Error = "missing or invalid OpenAI API key"
 
 	// ErrTooMuchInput is returned when the user provides more than one file.
 	ErrTooMuchInput xerrors.Error = "too many files to review; please provide only one file"
@@ -47,8 +47,8 @@ func ReviewAction(ctx *cli.Context) error {
 		file        = ctx.Args().Get(0)
 	)
 
-	if key == "" {
-		return errno.New(errno.ExitUnauthorized, ErrEmptyAPIKey)
+	if !validate.Key(key) {
+		return errno.New(errno.ExitUnauthorized, ErrInvalidAPIKey)
 	}
 
 	if !validate.Filetype(file, []string{"txt", "md"}) {

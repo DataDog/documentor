@@ -28,3 +28,16 @@ func Filetype(file string, allowedTypes []string) bool {
 
 	return false
 }
+
+// Key validates that the given API key is of the correct format.
+func Key(key string) bool {
+	if len(key) != 51 {
+		return false
+	}
+
+	if !strings.HasPrefix(key, "sk-") {
+		return false
+	}
+
+	return true
+}
