@@ -15,6 +15,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/validate"
 	"github.com/urfave/cli/v2"
 )
 
@@ -48,6 +49,10 @@ func ReviewAction(ctx *cli.Context) error {
 
 	if key == "" {
 		return errno.New(errno.ExitUnauthorized, ErrEmptyAPIKey)
+	}
+
+	if !validate.Filetype(file, []string{"txt", "md"}) {
+		return errno.New(errno.ExitInvalidInput, ErrInvalidFiletype)
 	}
 
 	data, err := os.ReadFile(file)

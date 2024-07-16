@@ -9,6 +9,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/validate"
 	"github.com/DataDog/documentor/internal/xbase64"
 	"github.com/urfave/cli/v2"
 )
@@ -21,6 +22,10 @@ const (
 	// ErrTooManyImages is the error message when the describe command is
 	// invoked with more than one input.
 	ErrTooManyImages xerrors.Error = "too many image files to describe; please provide only one"
+
+	// ErrInvalidImageType is the error message when the describe command is
+	// invoked with an invalid image file type.
+	ErrInvalidImageType xerrors.Error = "invalid image file type; please provide a PNG, JPG, JPEG, or GIF file"
 )
 
 // DescribeAction is the action to perform when the describe command is invoked.
@@ -43,6 +48,10 @@ func DescribeAction(ctx *cli.Context) error {
 
 	if key == "" {
 		return errno.New(errno.ExitUnauthorized, ErrEmptyAPIKey)
+	}
+
+	if !validate.Filetype(file, []string{"png", "jpg", "jpeg", "gif"}) {
+		return errno.New(errno.ExitInvalidInput, ErrInvalidImageType)
 	}
 
 	data, err := os.ReadFile(file)

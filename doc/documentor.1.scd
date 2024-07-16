@@ -110,6 +110,9 @@ them.
 *8*
 	Timed out when communicating with the OpenAI API.
 
+*9*
+	Invalid input.
+
 # EXAMPLES
 
 *1. Review a documentation file*

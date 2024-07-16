@@ -30,6 +30,9 @@ const (
 
 	// ExitTimeout is the exit code for timeout errors.
 	ExitTimeout
+
+	// ExitInvalidInput is the exit code for invalid input errors.
+	ExitInvalidInput
 )
 
 // Error is an error with an exit code.

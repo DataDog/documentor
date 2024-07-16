@@ -10,6 +10,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/validate"
 	"github.com/urfave/cli/v2"
 )
 
@@ -21,6 +22,10 @@ const (
 	// ErrTooManyNotes is the error message when the draft command is
 	// invoked with more than one input.
 	ErrTooManyNotes xerrors.Error = "too many notes files; please provide only one"
+
+	// ErrInvalidFiletype is the error message when the draft command is
+	// invoked with a file that is not a text file.
+	ErrInvalidFiletype xerrors.Error = "invalid filetype; please provide a TXT or MD file"
 )
 
 // DraftAction is the action to perform when the draft command is invoked.
@@ -41,6 +46,10 @@ func DraftAction(ctx *cli.Context) error {
 
 	if key == "" {
 		return errno.New(errno.ExitUnauthorized, ErrEmptyAPIKey)
+	}
+
+	if !validate.Filetype(file, []string{"txt", "md"}) {
+		return errno.New(errno.ExitInvalidInput, ErrInvalidFiletype)
 	}
 
 	data, err := os.ReadFile(file)
