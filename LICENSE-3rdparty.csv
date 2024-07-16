@@ -1,4 +1,4 @@
 Component,Origin,License,Copyright
 go.sum,github.com/sashabaranov/go-openai,Apache-2.0,2020 Alexander Baranov
 go.sum,git.sr.ht/~jamesponddotco/xstd-go,MIT,2023 James Pond
-go.sum,github.com/urfave/cli,MIT, Jeremy Saenz & Contributors
+go.sum,github.com/urfave/cli,MIT,Jeremy Saenz & Contributors
