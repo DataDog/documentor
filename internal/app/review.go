@@ -15,6 +15,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/prompt"
 	"github.com/DataDog/documentor/internal/validate"
 	"github.com/urfave/cli/v2"
 )
@@ -75,7 +76,7 @@ func ReviewAction(ctx *cli.Context) error {
 			"important that I get a good answer as I'm under a LOT of " +
 			"stress at work. I'll tip $500 if you can help me.\n\n" + document
 		client = openai.NewClient(key)
-		req    = openai.NewRequest(content, model, openai.MarkdownPrompt, float32(temperature))
+		req    = openai.NewRequest(content, model, prompt.MarkdownPrompt, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)

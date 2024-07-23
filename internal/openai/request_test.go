@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/prompt"
 )
 
 func TestNewRequest(t *testing.T) {
@@ -22,8 +23,8 @@ func TestNewRequest(t *testing.T) {
 	}{
 		{
 			name:           "Markdown prompt",
-			givePrompt:     openai.MarkdownPrompt,
-			expectedPrompt: openai.MarkdownPrompt,
+			givePrompt:     prompt.MarkdownPrompt,
+			expectedPrompt: prompt.MarkdownPrompt,
 			expectedModel:  "gpt-4o-mini",
 		},
 	}

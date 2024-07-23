@@ -14,6 +14,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/prompt"
 	"github.com/DataDog/documentor/internal/validate"
 	"github.com/DataDog/documentor/internal/xbase64"
 	"github.com/urfave/cli/v2"
@@ -76,7 +77,7 @@ func DescribeAction(ctx *cli.Context) error {
 	var (
 		content = xbase64.EncodeImageToDataURL(data)
 		client  = openai.NewClient(key)
-		req     = openai.NewRequestWithImage(content, context, model, openai.DescribePrompt, filename, float32(temperature))
+		req     = openai.NewRequestWithImage(content, context, model, prompt.DescribePrompt, filename, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)
