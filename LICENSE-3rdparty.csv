@@ -1,7 +1,8 @@
-git.sr.ht/~jamesponddotco/xstd-go,https://git.sr.ht/~jamesponddotco/xstd-go/tree/v0.8.0/LICENSE.md,MIT
-github.com/DataDog/documentor,https://github.com/DataDog/documentor/blob/HEAD/LICENSE.md,Apache-2.0
-github.com/cpuguy83/go-md2man/v2/md2man,https://github.com/cpuguy83/go-md2man/blob/v2.0.4/LICENSE.md,MIT
-github.com/russross/blackfriday/v2,https://github.com/russross/blackfriday/blob/v2.1.0/LICENSE.txt,BSD-2-Clause
-github.com/sashabaranov/go-openai,https://github.com/sashabaranov/go-openai/blob/v1.26.2/LICENSE,Apache-2.0
-github.com/urfave/cli/v2,https://github.com/urfave/cli/blob/v2.27.2/LICENSE,MIT
-github.com/xrash/smetrics,https://github.com/xrash/smetrics/blob/5f08fbb34913/LICENSE,MIT
+Origin,License,"License URL"
+git.sr.ht/~jamesponddotco/xstd-go,MIT,https://git.sr.ht/~jamesponddotco/xstd-go/tree/v0.8.0/LICENSE.md
+github.com/DataDog/documentor,Apache-2.0,https://github.com/DataDog/documentor/blob/HEAD/LICENSE.md
+github.com/cpuguy83/go-md2man/v2/md2man,MIT,https://github.com/cpuguy83/go-md2man/blob/v2.0.4/LICENSE.md
+github.com/russross/blackfriday/v2,BSD-2-Clause,https://github.com/russross/blackfriday/blob/v2.1.0/LICENSE.txt
+github.com/sashabaranov/go-openai,Apache-2.0,https://github.com/sashabaranov/go-openai/blob/v1.26.2/LICENSE
+github.com/urfave/cli/v2,MIT,https://github.com/urfave/cli/blob/v2.27.2/LICENSE
+github.com/xrash/smetrics,MIT,https://github.com/xrash/smetrics/blob/5f08fbb34913/LICENSE

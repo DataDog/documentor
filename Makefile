@@ -66,7 +66,7 @@ test/coverage: # Generates a coverage profile and open it in a browser.
 	$(GO) tool cover -html=cover.out
 
 licenses: # Runs go-licenses to check the licenses of the dependencies and generate a CSV file.
-	$(GO) run github.com/google/go-licenses@latest csv github.com/DataDog/documentor | sort > LICENSE-3rdparty.csv
+	$(GO) run github.com/google/go-licenses@latest report --template license.tpl github.com/DataDog/documentor > LICENSE-3rdparty.csv
 
 clean: # Cleans cache files from tests and deletes any build output.
 	$(RM) -f cover.out documentor documentor.1
