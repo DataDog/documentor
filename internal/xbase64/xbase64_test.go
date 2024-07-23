@@ -42,7 +42,7 @@ func TestEncodeImageToDataURL(t *testing.T) {
 		},
 		{
 			name: "Empty Data",
-			give: []byte{},
+			give: make([]byte, 0),
 			want: "data:image/jpeg;base64,",
 		},
 	}
