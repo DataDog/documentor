@@ -21,6 +21,10 @@ them.
 	Specifies the OpenAI API key to use for authentication. Can be set with the
 	DOCUMENTOR_KEY environment variable.
 
+*-m*, *--model* <*MODEL*>
+	Specifies the model to use when generating text. Defaults is "gpt-4o". Can
+	be set with the DOCUMENTOR_MODEL environment variable.
+
 *-t*, *--temperature* <*TEMPERATURE*>
 	Specifies the temperature to use when generating text. Default is 0.8. Can
 	be set with the DOCUMENTOR_TEMPERATURE environment variable.
@@ -77,6 +81,9 @@ them.
 
 *DOCUMENTOR_KEY*
 	Specifies the OpenAI API key to use for authentication.
+
+*DOCUMENTOR_MODEL*
+	Specifies the model to use when generating text. Defaults is "gpt-4o".
 
 *DOCUMENTOR_TEMPERATURE*
 	Specifies the temperature to use when generating text. Default is 0.8.

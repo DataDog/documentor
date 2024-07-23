@@ -24,7 +24,7 @@ func TestNewRequest(t *testing.T) {
 			name:           "Markdown prompt",
 			givePrompt:     openai.MarkdownPrompt,
 			expectedPrompt: openai.MarkdownPrompt,
-			expectedModel:  "gpt-4o",
+			expectedModel:  "gpt-4o-mini",
 		},
 	}
 
@@ -34,7 +34,7 @@ func TestNewRequest(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			t.Parallel()
 
-			req := openai.NewRequest("Say 'Hi' and nothing else.", tt.givePrompt, 0.1)
+			req := openai.NewRequest("Say 'Hi' and nothing else.", "gpt-4o-mini", tt.givePrompt, 0.1)
 
 			if req.Model != tt.expectedModel {
 				t.Errorf("Got model %v, want %v", req.Model, tt.expectedModel)
@@ -64,7 +64,7 @@ func TestNewRequestWithImage(t *testing.T) {
 			giveContext:     "Hello World!",
 			giveFilename:    true,
 			giveTemperature: 0.1,
-			expectedModel:   "gpt-4o",
+			expectedModel:   "gpt-4o-mini",
 		},
 	}
 
@@ -77,6 +77,7 @@ func TestNewRequestWithImage(t *testing.T) {
 			req := openai.NewRequestWithImage(
 				tt.giveImage,
 				tt.giveContext,
+				"gpt-4o-mini",
 				"Say 'Hi' and nothing else.",
 				tt.giveFilename,
 				tt.giveTemperature,

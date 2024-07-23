@@ -43,6 +43,7 @@ func ReviewAction(ctx *cli.Context) error {
 
 	var (
 		key         = ctx.String("key")
+		model       = ctx.String("model")
 		temperature = ctx.Float64("temperature")
 		file        = ctx.Args().Get(0)
 	)
@@ -74,7 +75,7 @@ func ReviewAction(ctx *cli.Context) error {
 			"important that I get a good answer as I'm under a LOT of " +
 			"stress at work. I'll tip $500 if you can help me.\n\n" + document
 		client = openai.NewClient(key)
-		req    = openai.NewRequest(content, openai.MarkdownPrompt, float32(temperature))
+		req    = openai.NewRequest(content, model, openai.MarkdownPrompt, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)

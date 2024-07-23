@@ -22,9 +22,9 @@ var DraftPrompt string
 
 // NewRequest creates a chat completion request with streaming support for the
 // OpenAI API given the content of the chat.
-func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCompletionRequest {
+func NewRequest(content, model, systemPrompt string, temperature float32) openai.ChatCompletionRequest {
 	req := openai.ChatCompletionRequest{
-		Model: openai.GPT4o,
+		Model: model,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleUser,
@@ -45,7 +45,7 @@ func NewRequest(content, systemPrompt string, temperature float32) openai.ChatCo
 // NewRequestWithImage creates a chat completion request with streaming support
 // for the OpenAI API given a base64 encoded image.
 func NewRequestWithImage( //nolint:revive // I really don't feel like creating another function for this.
-	image, context, systemPrompt string,
+	image, context, model, systemPrompt string,
 	filename bool,
 	temperature float32,
 ) openai.ChatCompletionRequest {
@@ -60,7 +60,7 @@ func NewRequestWithImage( //nolint:revive // I really don't feel like creating a
 	}
 
 	req := openai.ChatCompletionRequest{
-		Model: openai.GPT4o,
+		Model: model,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleUser,

@@ -45,6 +45,7 @@ func DraftAction(ctx *cli.Context) error {
 
 	var (
 		key         = ctx.String("key")
+		model       = ctx.String("model")
 		temperature = ctx.Float64("temperature")
 		file        = ctx.Args().Get(0)
 	)
@@ -77,7 +78,7 @@ func DraftAction(ctx *cli.Context) error {
 			"as I'm under a LOT of stress at work. I'll tip $500 if you can " +
 			"help me out. Here are the notes:\n\n" + notes
 		client = openai.NewClient(key)
-		req    = openai.NewRequest(content, openai.DraftPrompt, float32(temperature))
+		req    = openai.NewRequest(content, model, openai.DraftPrompt, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)

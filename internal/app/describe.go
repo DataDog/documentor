@@ -45,6 +45,7 @@ func DescribeAction(ctx *cli.Context) error {
 
 	var (
 		key         = ctx.String("key")
+		model       = ctx.String("model")
 		context     = ctx.String("context")
 		temperature = ctx.Float64("temperature")
 		filename    = ctx.Bool("filename")
@@ -75,7 +76,7 @@ func DescribeAction(ctx *cli.Context) error {
 	var (
 		content = xbase64.EncodeImageToDataURL(data)
 		client  = openai.NewClient(key)
-		req     = openai.NewRequestWithImage(content, context, openai.DescribePrompt, filename, float32(temperature))
+		req     = openai.NewRequestWithImage(content, context, model, openai.DescribePrompt, filename, float32(temperature))
 	)
 
 	resp, err := client.Do(ctx.Context, req)
