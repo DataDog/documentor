@@ -65,7 +65,10 @@ test/coverage: # Generates a coverage profile and open it in a browser.
 	$(GO) test -coverprofile cover.out ./...
 	$(GO) tool cover -html=cover.out
 
+licenses: # Runs go-licenses to check the licenses of the dependencies and generate a CSV file.
+	$(GO) run github.com/google/go-licenses@latest csv github.com/DataDog/documentor | sort > LICENSE-3rdparty.csv
+
 clean: # Cleans cache files from tests and deletes any build output.
 	$(RM) -f cover.out documentor documentor.1
 
-.PHONY: all pre-commit commit push build doc install tidy fmt lint vulnerabilities test test/coverage clean
+.PHONY: all pre-commit commit push build doc install tidy fmt lint vulnerabilities test test/coverage licenses clean
