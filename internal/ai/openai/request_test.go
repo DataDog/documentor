@@ -8,7 +8,7 @@ package openai_test
 import (
 	"testing"
 
-	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/prompt"
 )
 

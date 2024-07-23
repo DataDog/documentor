@@ -12,8 +12,8 @@ import (
 	"os"
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
+	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
-	"github.com/DataDog/documentor/internal/openai"
 	"github.com/DataDog/documentor/internal/prompt"
 	"github.com/DataDog/documentor/internal/validate"
 	"github.com/DataDog/documentor/internal/xbase64"

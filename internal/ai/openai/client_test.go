@@ -10,7 +10,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/DataDog/documentor/internal/openai"
+	"github.com/DataDog/documentor/internal/ai/openai"
 )
 
 func TestClient_Do(t *testing.T) {

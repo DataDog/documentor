@@ -13,8 +13,8 @@ import (
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
+	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
-	"github.com/DataDog/documentor/internal/openai"
 	"github.com/DataDog/documentor/internal/prompt"
 	"github.com/DataDog/documentor/internal/validate"
 	"github.com/urfave/cli/v2"
