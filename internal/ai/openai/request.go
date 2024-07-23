@@ -6,8 +6,6 @@
 package openai
 
 import (
-	_ "embed"
-
 	"github.com/sashabaranov/go-openai"
 )
 
