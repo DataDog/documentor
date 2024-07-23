@@ -1,6 +1,5 @@
 Origin,License,"License URL"
 git.sr.ht/~jamesponddotco/xstd-go,MIT,https://git.sr.ht/~jamesponddotco/xstd-go/tree/v0.8.0/LICENSE.md
-github.com/DataDog/documentor,Apache-2.0,https://github.com/DataDog/documentor/blob/HEAD/LICENSE.md
 github.com/cpuguy83/go-md2man/v2/md2man,MIT,https://github.com/cpuguy83/go-md2man/blob/v2.0.4/LICENSE.md
 github.com/russross/blackfriday/v2,BSD-2-Clause,https://github.com/russross/blackfriday/blob/v2.1.0/LICENSE.txt
 github.com/sashabaranov/go-openai,Apache-2.0,https://github.com/sashabaranov/go-openai/blob/v1.26.2/LICENSE
