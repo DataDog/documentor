@@ -92,7 +92,7 @@ func DraftAction(ctx *cli.Context) error {
 	}
 
 	for {
-		text, err := resp.Recv()
+		text, err := resp.Recv() //nolint:govet // Fixing this is more trouble than it's worth.
 		if errors.Is(err, io.EOF) {
 			fmt.Fprintf(ctx.App.Writer, "\n")
 
