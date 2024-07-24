@@ -10,7 +10,8 @@ import "github.com/urfave/cli/v2"
 
 // List of supported AI providers.
 const (
-	ProviderOpenAI string = "openai"
+	ProviderOpenAI    string = "openai"
+	ProviderAnthropic string = "anthropic"
 )
 
 // Provider represents an LLM provider such as OpenAI, Anthropic, Mistral, etc.

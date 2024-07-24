@@ -2,6 +2,8 @@ git.sr.ht/~jamesponddotco/xstd-go v0.8.0 h1:2FcwEvLunzTL/tSvlcs+pO60O8rlkIcr8bSo
 git.sr.ht/~jamesponddotco/xstd-go v0.8.0/go.mod h1:L0SjmhDqcj/gR7oeNof+ed6l9VPk6oHPeNQSoaFBRFk=
 github.com/cpuguy83/go-md2man/v2 v2.0.4 h1:wfIWP927BUkWJb2NmU/kNDYIBTh/ziUX91+lVfRxZq4=
 github.com/cpuguy83/go-md2man/v2 v2.0.4/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
+github.com/liushuangls/go-anthropic/v2 v2.4.0 h1:OIqja8JAB5oQRLVst3fiila+6B6tsh1EJ7L1IfzrXLQ=
+github.com/liushuangls/go-anthropic/v2 v2.4.0/go.mod h1:8BKv/fkeTaL5R9R9bGkaknYBueyw2WxY20o7bImbOek=
 github.com/russross/blackfriday/v2 v2.1.0 h1:JIOH55/0cWyOuilr9/qlrm0BSXldqnqwMsf35Ld67mk=
 github.com/russross/blackfriday/v2 v2.1.0/go.mod h1:+Rmxgy9KzJVeS9/2gXHxylqXiyQDYRxCVz55jmeOWTM=
 github.com/sashabaranov/go-openai v1.27.0 h1:L3hO6650YUbKrbGUC6yCjsUluhKZ9h1/jcgbTItI8Mo=

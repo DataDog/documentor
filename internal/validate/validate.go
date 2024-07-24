@@ -31,7 +31,7 @@ func Filetype(file string, allowedTypes []string) bool {
 
 // Key validates that the given API key is of the correct format.
 func Key(key string) bool {
-	if len(key) != 51 {
+	if len(key) < 51 {
 		return false
 	}
 

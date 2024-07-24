@@ -13,6 +13,7 @@ import (
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/ai"
+	"github.com/DataDog/documentor/internal/ai/anthropic"
 	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/prompt"
@@ -74,6 +75,8 @@ func DescribeAction(ctx *cli.Context) error {
 	switch provider {
 	case ai.ProviderOpenAI:
 		client = openai.NewClient(key)
+	case ai.ProviderAnthropic:
+		client = anthropic.NewClient(key)
 	default:
 		return errno.New(errno.ExitInvalidInput, ErrInvalidProvider)
 	}
