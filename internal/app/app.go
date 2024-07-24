@@ -29,9 +29,18 @@ func Run(args []string) int {
 		&cli.StringFlag{
 			Name:    "key",
 			Aliases: []string{"k"},
-			Usage:   "the OpenAI API key to use",
+			Usage:   "the API key to use",
 			EnvVars: []string{
 				"DOCUMENTOR_KEY",
+			},
+		},
+		&cli.StringFlag{
+			Name:    "provider",
+			Aliases: []string{"p"},
+			Usage:   "the AI provider to use",
+			Value:   "openai",
+			EnvVars: []string{
+				"DOCUMENTOR_PROVIDER",
 			},
 		},
 		&cli.StringFlag{
