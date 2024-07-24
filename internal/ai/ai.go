@@ -8,6 +8,11 @@ package ai
 
 import "github.com/urfave/cli/v2"
 
+// List of supported AI providers.
+const (
+	ProviderOpenAI string = "openai"
+)
+
 // Provider represents an LLM provider such as OpenAI, Anthropic, Mistral, etc.
 type Provider interface {
 	// Name returns the name of the provider.
