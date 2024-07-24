@@ -8,10 +8,11 @@ package app
 import (
 	"errors"
 	"fmt"
-	"io"
 	"os"
+	"strings"
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
+	"github.com/DataDog/documentor/internal/ai"
 	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/prompt"
@@ -32,6 +33,10 @@ const (
 	// ErrInvalidImageType is the error message when the describe command is
 	// invoked with an invalid image file type.
 	ErrInvalidImageType xerrors.Error = "invalid image file type; please provide a PNG, JPG, JPEG, or GIF file"
+
+	// ErrInvalidProvider is the error message when the describe command is
+	// invoked with an invalid AI provider.
+	ErrInvalidProvider xerrors.Error = "invalid AI provider; please refer to the documentation for a list of valid providers"
 )
 
 // DescribeAction is the action to perform when the describe command is invoked.
@@ -47,10 +52,12 @@ func DescribeAction(ctx *cli.Context) error {
 	var (
 		key         = ctx.String("key")
 		model       = ctx.String("model")
+		provider    = ctx.String("provider")
 		context     = ctx.String("context")
 		temperature = ctx.Float64("temperature")
 		filename    = ctx.Bool("filename")
 		file        = ctx.Args().Get(0)
+		client      ai.Provider
 	)
 
 	if !validate.Key(key) {
@@ -59,6 +66,16 @@ func DescribeAction(ctx *cli.Context) error {
 
 	if !validate.Filetype(file, []string{"png", "jpg", "jpeg", "gif"}) {
 		return errno.New(errno.ExitInvalidInput, ErrInvalidImageType)
+	}
+
+	provider = strings.ToLower(provider)
+	provider = strings.TrimSpace(provider)
+
+	switch provider {
+	case ai.ProviderOpenAI:
+		client = openai.NewClient(key)
+	default:
+		return errno.New(errno.ExitInvalidInput, ErrInvalidProvider)
 	}
 
 	data, err := os.ReadFile(file)
@@ -74,34 +91,24 @@ func DescribeAction(ctx *cli.Context) error {
 		return errno.New(errno.ExitIO, err)
 	}
 
+	userPrompt := "Please generate an SEO-optimized alt text for the attached image."
+
+	if filename {
+		userPrompt += " Include a SEO-optimized filename as well."
+	}
+
 	var (
-		content = xbase64.EncodeImageToDataURL(data)
-		client  = openai.NewClient(key)
-		req     = openai.NewRequestWithImage(content, context, model, prompt.DescribePrompt, filename, float32(temperature))
+		image = xbase64.EncodeImageToDataURL(data)
+		req   = ai.NewRequestWithImage(model, image, context, userPrompt, prompt.DescribePrompt, float32(temperature))
 	)
 
-	resp, err := client.Do(ctx.Context, req)
+	err = client.Do(ctx, req)
 	if err != nil {
 		if errors.Is(err, os.ErrDeadlineExceeded) {
 			return errno.New(errno.ExitTimeout, err)
 		}
 
 		return errno.New(errno.ExitAPIError, fmt.Errorf("failed to get response: %w", err))
-	}
-
-	for {
-		text, err := resp.Recv() //nolint:govet // Fixing this is more trouble than it's worth.
-		if errors.Is(err, io.EOF) {
-			fmt.Fprintf(ctx.App.Writer, "\n")
-
-			break
-		}
-
-		if err != nil {
-			return errno.New(errno.ExitAPIError, fmt.Errorf("failed to get response: %w", err))
-		}
-
-		fmt.Fprintf(ctx.App.Writer, "%s", text.Choices[0].Delta.Content)
 	}
 
 	return nil

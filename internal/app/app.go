@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/documentor/internal/ai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/meta"
 	"github.com/sashabaranov/go-openai"
@@ -38,7 +39,7 @@ func Run(args []string) int {
 			Name:    "provider",
 			Aliases: []string{"p"},
 			Usage:   "the AI provider to use",
-			Value:   "openai",
+			Value:   ai.ProviderOpenAI,
 			EnvVars: []string{
 				"DOCUMENTOR_PROVIDER",
 			},

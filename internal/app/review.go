@@ -8,11 +8,12 @@ package app
 import (
 	"errors"
 	"fmt"
-	"io"
 	"os"
+	"strings"
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
+	"github.com/DataDog/documentor/internal/ai"
 	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/prompt"
@@ -45,8 +46,10 @@ func ReviewAction(ctx *cli.Context) error {
 	var (
 		key         = ctx.String("key")
 		model       = ctx.String("model")
+		provider    = ctx.String("provider")
 		temperature = ctx.Float64("temperature")
 		file        = ctx.Args().Get(0)
+		client      ai.Provider
 	)
 
 	if !validate.Key(key) {
@@ -55,6 +58,16 @@ func ReviewAction(ctx *cli.Context) error {
 
 	if !validate.Filetype(file, []string{"txt", "md"}) {
 		return errno.New(errno.ExitInvalidInput, ErrInvalidFiletype)
+	}
+
+	provider = strings.ToLower(provider)
+	provider = strings.TrimSpace(provider)
+
+	switch provider {
+	case ai.ProviderOpenAI:
+		client = openai.NewClient(key)
+	default:
+		return errno.New(errno.ExitInvalidInput, ErrInvalidProvider)
 	}
 
 	data, err := os.ReadFile(file)
@@ -71,36 +84,20 @@ func ReviewAction(ctx *cli.Context) error {
 	}
 
 	var (
-		document = xunsafe.BytesToString(data)
-		content  = "Please review the following content. It's very " +
+		content    = xunsafe.BytesToString(data)
+		userPrompt = "Please review the following content. It's very " +
 			"important that I get a good answer as I'm under a LOT of " +
-			"stress at work. I'll tip $500 if you can help me.\n\n" + document
-		client = openai.NewClient(key)
-		req    = openai.NewRequest(content, model, prompt.MarkdownPrompt, float32(temperature))
+			"stress at work. I'll tip $500 if you can help me."
+		req = ai.NewRequest(model, content, userPrompt, prompt.MarkdownPrompt, float32(temperature))
 	)
 
-	resp, err := client.Do(ctx.Context, req)
+	err = client.Do(ctx, req)
 	if err != nil {
 		if errors.Is(err, os.ErrDeadlineExceeded) {
 			return errno.New(errno.ExitTimeout, err)
 		}
 
 		return errno.New(errno.ExitAPIError, fmt.Errorf("failed to get response: %w", err))
-	}
-
-	for {
-		text, err := resp.Recv() //nolint:govet // Fixing this is more trouble than it's worth.
-		if errors.Is(err, io.EOF) {
-			fmt.Fprintf(ctx.App.Writer, "\n")
-
-			break
-		}
-
-		if err != nil {
-			return errno.New(errno.ExitAPIError, fmt.Errorf("failed to get response: %w", err))
-		}
-
-		fmt.Fprintf(ctx.App.Writer, "%s", text.Choices[0].Delta.Content)
 	}
 
 	return nil
