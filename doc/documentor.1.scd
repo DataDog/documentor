@@ -18,8 +18,12 @@ them.
 # OPTIONS
 
 *-k*, *--key* <*API_KEY*>
-	Specifies the OpenAI API key to use for authentication. Can be set with the
-	DOCUMENTOR_KEY environment variable.
+	Specifies the API key to use for authentication with the AI provider. Can be
+	set with the DOCUMENTOR_KEY environment variable.
+
+*-p*, *--provider* <*PROVIDER*>
+	Specifies the AI provider to use. Default is "openai".Can be set with the
+	DOCUMENTOR_PROVIDER environment variable.
 
 *-m*, *--model* <*MODEL*>
 	Specifies the model to use when generating text. Defaults is "gpt-4o". Can
@@ -73,14 +77,47 @@ them.
 
 # ARGUMENTS
 
+<*API_KEY*>
+	The API key to use for authentication with the AI provider starting with the
+	`sk-` prefix. OpenAI expects a 51-character long key, while Anthropic
+	expects a 108-character long key.
+
+<*PROVIDER*>
+	The AI provider to use. Can be one of the supported providers. Default is
+	"openai".
+
+	*Supported providers*:
+
+	- OpenAI: `openai`
+	- Anthropic: `anthropic`
+
+<*MODEL*>
+	The model to use when generating text for each command. The command expects
+	a string like "gpt-4o" or "claude-3-5-sonnet-20240620". Refer to the
+	provider's documentation for the available models.
+
+<*TEMPERATURE*>
+	The temperature to use when generating text. The temperature is a float
+	value between 0 and 1 that controls the randomness of the response. A value
+	of 0 will always return the most likely output, while a value of 1 will
+	return a more random token. Default is 0.8.
+
 <*FILE*>
 	The path to a documentation file to review, image to describe, or file with
 	notes about a document to draft.
+
+<*CONTEXT*>
+	The context around the image to describe. This can be a short description of
+	the purpose of the image, e.g., "Picture of a Cloudcraft diagram", or even
+	the filename of the image.
 
 # ENVIROMENT
 
 *DOCUMENTOR_KEY*
 	Specifies the OpenAI API key to use for authentication.
+
+*DOCUMENTOR_PROVIDER*
+	Specifies the AI provider to use. Default is "openai".
 
 *DOCUMENTOR_MODEL*
 	Specifies the model to use when generating text. Defaults is "gpt-4o".
@@ -145,6 +182,9 @@ them.
 
 *8. Draft a document based on notes*
 	$ documentor draft notes.md
+
+*9. Draft a document using Anthropic as the AI provider*
+	$ documentor --provider 'anthropic' --model 'claude-3-5-sonnet-20240620' draft notes.md
 
 # AUTHORS
 

@@ -49,7 +49,9 @@ COMMANDS:
    draft, D     draft new documentation based on the provided notes
 
 GLOBAL OPTIONS:
-   --key value, -k value          the OpenAI API key to use [$DOCUMENTOR_KEY]
+   --key value, -k value          the API key to use [$DOCUMENTOR_KEY]
+   --provider value, -p value     the AI provider to use (default: "openai") [$DOCUMENTOR_PROVIDER]
+   --model value, -m value        the AI model to use (default: "gpt-4o") [$DOCUMENTOR_MODEL]
    --temperature value, -t value  the temperature to use for the model (default: 0.8) [$DOCUMENTOR_TEMPERATURE]
    --help, -h                     show help
    --version, -v                  print the version
