@@ -7,7 +7,6 @@ on:
     paths-ignore:
       - '.editorconfig'
       - '.gitignore'
-      - '.golangci.yml'
       - 'CONTRIBUTING.md'
       - 'LICENSE-3rdparty.csv'
       - 'LICENSE.md'
@@ -20,7 +19,6 @@ on:
     paths-ignore:
       - '.editorconfig'
       - '.gitignore'
-      - '.golangci.yml'
       - 'CONTRIBUTING.md'
       - 'LICENSE-3rdparty.csv'
       - 'LICENSE.md'
