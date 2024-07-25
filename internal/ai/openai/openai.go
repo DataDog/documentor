@@ -51,11 +51,12 @@ func (*Client) Name() string {
 func (c *Client) Do(ctx *cli.Context, request *ai.Request) error {
 	var req openai.ChatCompletionRequest
 
-	if request.Image != nil {
+	switch {
+	case request.Image != nil:
 		req = NewRequestWithImage(request)
-	} else if request.Text != nil {
+	case request.Text != nil:
 		req = NewRequest(request)
-	} else {
+	default:
 		return ErrInvalidRequest
 	}
 

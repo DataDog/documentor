@@ -48,11 +48,12 @@ func (*Client) Name() string {
 func (c *Client) Do(ctx *cli.Context, request *ai.Request) error {
 	var req anthropic.MessagesStreamRequest
 
-	if request.Image != nil {
+	switch {
+	case request.Image != nil:
 		req = NewRequestWithImage(ctx, request)
-	} else if request.Text != nil {
+	case request.Text != nil:
 		req = NewRequest(ctx, request)
-	} else {
+	default:
 		return ErrInvalidRequest
 	}
 
