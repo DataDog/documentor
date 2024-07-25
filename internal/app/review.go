@@ -25,9 +25,9 @@ const (
 	// ErrEmptyInput is returned when no file is provided by the user.
 	ErrEmptyInput xerrors.Error = "missing file to review"
 
-	// ErrInvalidAPIKey is returned when the user does not provide an OpenAI API
-	// key or provides an invalid one.
-	ErrInvalidAPIKey xerrors.Error = "missing or invalid OpenAI API key"
+	// ErrInvalidAPIKey is returned when the user does not provide an API key
+	// for the given provider or provides an invalid one.
+	ErrInvalidAPIKey xerrors.Error = "missing or invalid API key"
 
 	// ErrTooMuchInput is returned when the user provides more than one file.
 	ErrTooMuchInput xerrors.Error = "too many files to review; please provide only one file"
