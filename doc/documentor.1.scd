@@ -26,8 +26,9 @@ them.
 	DOCUMENTOR_PROVIDER environment variable.
 
 *-m*, *--model* <*MODEL*>
-	Specifies the model to use when generating text. Defaults is "gpt-4o". Can
-	be set with the DOCUMENTOR_MODEL environment variable.
+	Specifies the model to use when generating text. Defaults is "gpt-4o" for
+	OpenAI and "claude-3-5-sonnet-20240620" for Anthropic. Can be set with the
+	DOCUMENTOR_MODEL environment variable.
 
 *-t*, *--temperature* <*TEMPERATURE*>
 	Specifies the temperature to use when generating text. Default is 0.8. Can
@@ -94,7 +95,8 @@ them.
 <*MODEL*>
 	The model to use when generating text for each command. The command expects
 	a string like "gpt-4o" or "claude-3-5-sonnet-20240620". Refer to the
-	provider's documentation for the available models.
+	provider's documentation for the available models. Default is "gpt-4o" for
+	OpenAI and "claude-3-5-sonnet-20240620" for Anthropic.
 
 <*TEMPERATURE*>
 	The temperature to use when generating text. The temperature is a float
@@ -120,7 +122,8 @@ them.
 	Specifies the AI provider to use. Default is "openai".
 
 *DOCUMENTOR_MODEL*
-	Specifies the model to use when generating text. Defaults is "gpt-4o".
+	Specifies the model to use when generating text. Defaults is "gpt-4o" for
+	OpenAI and "claude-3-5-sonnet-20240620" for Anthropic.
 
 *DOCUMENTOR_TEMPERATURE*
 	Specifies the temperature to use when generating text. Default is 0.8.
@@ -184,7 +187,7 @@ them.
 	$ documentor draft notes.md
 
 *9. Draft a document using Anthropic as the AI provider*
-	$ documentor --provider 'anthropic' --model 'claude-3-5-sonnet-20240620' draft notes.md
+	$ documentor --provider 'anthropic' draft notes.md
 
 # AUTHORS
 

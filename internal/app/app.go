@@ -12,9 +12,9 @@ import (
 	"os"
 
 	"github.com/DataDog/documentor/internal/ai"
+	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/meta"
-	"github.com/sashabaranov/go-openai"
 	"github.com/urfave/cli/v2"
 )
 
@@ -48,7 +48,7 @@ func Run(args []string) int {
 			Name:    "model",
 			Aliases: []string{"m"},
 			Usage:   "the AI model to use",
-			Value:   openai.GPT4o,
+			Value:   openai.DefaultModel,
 			EnvVars: []string{
 				"DOCUMENTOR_MODEL",
 			},

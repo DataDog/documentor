@@ -76,6 +76,10 @@ func DescribeAction(ctx *cli.Context) error {
 		client = openai.NewClient(key)
 	case ai.ProviderAnthropic:
 		client = anthropic.NewClient(key)
+
+		if model == openai.DefaultModel {
+			model = anthropic.DefaultModel
+		}
 	default:
 		return errno.New(errno.ExitInvalidInput, ErrInvalidProvider)
 	}

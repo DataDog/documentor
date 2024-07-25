@@ -23,6 +23,10 @@ import (
 // missing both an image and text.
 const ErrInvalidRequest xerrors.Error = "invalid request: must provide either an image or text"
 
+// DefaultModel is the default model to use when making requests to the OpenAI
+// API.
+const DefaultModel = "gpt-4o"
+
 // Client represents an OpenAI API client that complies with the ai.Provider
 // interface.
 type Client struct {
