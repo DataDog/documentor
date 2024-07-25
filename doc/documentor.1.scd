@@ -80,7 +80,7 @@ them.
 
 <*API_KEY*>
 	The API key to use for authentication with the AI provider starting with the
-	`sk-` prefix. OpenAI expects a 51-character long key, while Anthropic
+	"sk-" prefix. OpenAI expects a 51-character long key, while Anthropic
 	expects a 108-character long key.
 
 <*PROVIDER*>
