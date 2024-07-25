@@ -29,14 +29,6 @@ type Provider interface {
 
 // Request represents an HTTP request to an AI provider's API.
 type Request struct {
-	// Text represents content that is sent to the AI provider together with the
-	// user prompt for generating a response.
-	Text []byte
-
-	// Image represents an image attachment that is sent to the AI provider
-	// together with the user prompt for generating a response.
-	Image []byte
-
 	// Context is a string that provides additional context for the request. It
 	// is only used if Content is a base64-encoded image.
 	Context string
@@ -55,6 +47,14 @@ type Request struct {
 	// This prompt is sent to the AI provider after the system prompt and can be
 	// used to provide additional context or constraints for the response.
 	UserPrompt string
+
+	// Text represents content that is sent to the AI provider together with the
+	// user prompt for generating a response.
+	Text []byte
+
+	// Image represents an image attachment that is sent to the AI provider
+	// together with the user prompt for generating a response.
+	Image []byte
 
 	// Temperature is a float between 0 and 1 that controls the randomness of
 	// the response. A value of 0 will always return the most likely token,
