@@ -49,19 +49,19 @@ func (c *Client) Do(ctx *cli.Context, request *ai.Request) error {
 	var req anthropic.MessagesStreamRequest
 
 	if request.Image != nil {
-		req = NewRequestWithImage(request)
+		req = NewRequestWithImage(ctx, request)
 	} else if request.Text != nil {
-		req = NewRequest(request)
+		req = NewRequest(ctx, request)
 	} else {
 		return ErrInvalidRequest
 	}
 
-	resp, err := c.ai.CreateMessagesStream(ctx.Context, req)
+	_, err := c.ai.CreateMessagesStream(ctx.Context, req)
 	if err != nil {
 		return fmt.Errorf("%w", err)
 	}
 
-	fmt.Fprintf(ctx.App.Writer, "%s\n", *resp.Content[0].Text)
+	fmt.Fprintf(ctx.App.Writer, "\n")
 
 	return nil
 }
