@@ -1,6 +1,7 @@
 package anthropic
 
 import (
+	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/ai"
 	"github.com/liushuangls/go-anthropic/v2"
 )
@@ -8,6 +9,8 @@ import (
 // NewRequest creates a chat completion request with streaming support for the
 // Anthropic API given the provided ai.Request object.
 func NewRequest(req *ai.Request) anthropic.MessagesStreamRequest {
+	text := xunsafe.BytesToString(req.Text)
+
 	return anthropic.MessagesStreamRequest{
 		MessagesRequest: anthropic.MessagesRequest{
 			Model:       req.Model,
@@ -18,7 +21,7 @@ func NewRequest(req *ai.Request) anthropic.MessagesStreamRequest {
 				{
 					Role: anthropic.RoleUser,
 					Content: []anthropic.MessageContent{
-						anthropic.NewTextMessageContent(req.Content),
+						anthropic.NewTextMessageContent(text),
 						anthropic.NewTextMessageContent(req.UserPrompt),
 					},
 				},
@@ -44,7 +47,7 @@ func NewRequestWithImage(req *ai.Request) anthropic.MessagesStreamRequest {
 						anthropic.NewImageMessageContent(anthropic.MessageContentImageSource{
 							Type:      "base64",
 							MediaType: "image/jpeg",
-							Data:      req.Content,
+							Data:      req.Image,
 						}),
 						anthropic.NewTextMessageContent(req.UserPrompt),
 					},

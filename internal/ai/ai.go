@@ -29,10 +29,13 @@ type Provider interface {
 
 // Request represents an HTTP request to an AI provider's API.
 type Request struct {
-	// Content is the user prompt to send to the AI provider. It should be
-	// either a string with the prompt text or a base64-encoded image, depending
-	// on the type of request.
-	Content string
+	// Text represents content that is sent to the AI provider together with the
+	// user prompt for generating a response.
+	Text []byte
+
+	// Image represents an image attachment that is sent to the AI provider
+	// together with the user prompt for generating a response.
+	Image []byte
 
 	// Context is a string that provides additional context for the request. It
 	// is only used if Content is a base64-encoded image.
@@ -60,9 +63,9 @@ type Request struct {
 }
 
 // NewRequest returns a new Request instance for a text-based user prompt.
-func NewRequest(model, content, userPrompt, systemPrompt string, temperature float32) *Request {
+func NewRequest(text []byte, model, userPrompt, systemPrompt string, temperature float32) *Request {
 	return &Request{
-		Content:      content,
+		Text:         text,
 		Model:        model,
 		SystemPrompt: systemPrompt,
 		UserPrompt:   userPrompt,
@@ -72,13 +75,13 @@ func NewRequest(model, content, userPrompt, systemPrompt string, temperature flo
 
 // NewRequestWithImage returns a new Request instance for an user prompt with a
 // base64-encoded image attachment.
-func NewRequestWithImage(model, image, context, userPrompt, systemPrompt string, temperature float32) *Request {
+func NewRequestWithImage(image []byte, model, context, userPrompt, systemPrompt string, temperature float32) *Request {
 	if context != "" {
 		userPrompt += "/n/n Here is some context for the image: " + context
 	}
 
 	return &Request{
-		Content:      image,
+		Image:        image,
 		Context:      context,
 		Model:        model,
 		SystemPrompt: systemPrompt,

@@ -9,12 +9,16 @@ package anthropic
 
 import (
 	"fmt"
-	"strings"
 
+	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/ai"
 	"github.com/liushuangls/go-anthropic/v2"
 	"github.com/urfave/cli/v2"
 )
+
+// ErrInvalidRequest is returned when the request provided to the OpenAI API is
+// missing both an image and text.
+const ErrInvalidRequest xerrors.Error = "invalid request: must provide either an image or text"
 
 // Client represents an Anthropic API client that complies with the ai.Provider
 // interface.
@@ -44,10 +48,12 @@ func (*Client) Name() string {
 func (c *Client) Do(ctx *cli.Context, request *ai.Request) error {
 	var req anthropic.MessagesStreamRequest
 
-	if strings.HasPrefix(request.Content, "data:image/jpeg;base64,") {
+	if request.Image != nil {
 		req = NewRequestWithImage(request)
-	} else {
+	} else if request.Text != nil {
 		req = NewRequest(request)
+	} else {
+		return ErrInvalidRequest
 	}
 
 	resp, err := c.ai.CreateMessagesStream(ctx.Context, req)

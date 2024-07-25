@@ -18,7 +18,6 @@ import (
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/prompt"
 	"github.com/DataDog/documentor/internal/validate"
-	"github.com/DataDog/documentor/internal/xbase64"
 	"github.com/urfave/cli/v2"
 )
 
@@ -100,10 +99,7 @@ func DescribeAction(ctx *cli.Context) error {
 		userPrompt += " Include a SEO-optimized filename as well."
 	}
 
-	var (
-		image = xbase64.EncodeImageToDataURL(data)
-		req   = ai.NewRequestWithImage(model, image, context, userPrompt, prompt.DescribePrompt, float32(temperature))
-	)
+	req := ai.NewRequestWithImage(data, model, context, userPrompt, prompt.DescribePrompt, float32(temperature))
 
 	err = client.Do(ctx, req)
 	if err != nil {

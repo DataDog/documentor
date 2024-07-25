@@ -12,7 +12,6 @@ import (
 	"strings"
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
-	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/ai"
 	"github.com/DataDog/documentor/internal/ai/anthropic"
 	"github.com/DataDog/documentor/internal/ai/openai"
@@ -87,11 +86,10 @@ func ReviewAction(ctx *cli.Context) error {
 	}
 
 	var (
-		content    = xunsafe.BytesToString(data)
 		userPrompt = "Please review the following content. It's very " +
 			"important that I get a good answer as I'm under a LOT of " +
 			"stress at work. I'll tip $500 if you can help me."
-		req = ai.NewRequest(model, content, userPrompt, prompt.MarkdownPrompt, float32(temperature))
+		req = ai.NewRequest(data, model, userPrompt, prompt.MarkdownPrompt, float32(temperature))
 	)
 
 	err = client.Do(ctx, req)

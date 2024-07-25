@@ -6,13 +6,17 @@
 package openai
 
 import (
+	"git.sr.ht/~jamesponddotco/xstd-go/xunsafe"
 	"github.com/DataDog/documentor/internal/ai"
+	"github.com/DataDog/documentor/internal/xbase64"
 	"github.com/sashabaranov/go-openai"
 )
 
 // NewTextRequest creates a chat completion request with streaming support for
 // the OpenAI API given the provided ai.Request object.
 func NewRequest(req *ai.Request) openai.ChatCompletionRequest {
+	text := xunsafe.BytesToString(req.Text)
+
 	return openai.ChatCompletionRequest{
 		Model:       req.Model,
 		Temperature: req.Temperature,
@@ -20,7 +24,7 @@ func NewRequest(req *ai.Request) openai.ChatCompletionRequest {
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleUser,
-				Content: req.Content,
+				Content: text,
 			},
 			{
 				Role:    openai.ChatMessageRoleUser,
@@ -38,6 +42,8 @@ func NewRequest(req *ai.Request) openai.ChatCompletionRequest {
 // for the OpenAI API given the provided ai.Request object. The req.Content
 // field should be a base64-encoded image.
 func NewRequestWithImage(req *ai.Request) openai.ChatCompletionRequest {
+	image := xbase64.EncodeImageToDataURL(req.Image)
+
 	return openai.ChatCompletionRequest{
 		Model:       req.Model,
 		Temperature: req.Temperature,
@@ -53,7 +59,7 @@ func NewRequestWithImage(req *ai.Request) openai.ChatCompletionRequest {
 					{
 						Type: openai.ChatMessagePartTypeImageURL,
 						ImageURL: &openai.ChatMessageImageURL{
-							URL:    req.Content,
+							URL:    image,
 							Detail: openai.ImageURLDetailAuto,
 						},
 					},
