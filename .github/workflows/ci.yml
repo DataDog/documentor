@@ -1,0 +1,47 @@
+---
+name: 'Tests'
+on:
+  push:
+    branches:
+      - 'trunk'
+    paths-ignore:
+      - '.editorconfig'
+      - '.gitignore'
+      - '.golangci.yml'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE-3rdparty.csv'
+      - 'LICENSE.md'
+      - 'NOTICE'
+      - 'README.md'
+      - 'license-3rdparty.tpl'
+  pull_request:
+    branches:
+      - 'trunk'
+    paths-ignore:
+      - '.editorconfig'
+      - '.gitignore'
+      - '.golangci.yml'
+      - 'CONTRIBUTING.md'
+      - 'LICENSE-3rdparty.csv'
+      - 'LICENSE.md'
+      - 'NOTICE'
+      - 'README.md'
+      - 'license-3rdparty.tpl'
+
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+    name: 'Tests'
+    steps:
+      - uses: 'actions/checkout@v4'
+
+      - name: 'Setup Go environment'
+        uses: 'actions/setup-go@v4'
+        with:
+          go-version: '1.22.x'
+
+      - name: 'Run tests'
+        run: 'make test'
+
+      - name: 'Run build'
+        run: 'make build'
