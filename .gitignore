@@ -2,6 +2,8 @@
 # when working on this project.
 .env
 .tmp
+documentor
+documentor.1
 
 # https://i.cpimg.sh/r6BsGDijfFyl.png
 .DS_Store
