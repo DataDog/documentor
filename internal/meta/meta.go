@@ -12,7 +12,7 @@ const (
 	Name = "documentor"
 
 	// Version is the version of the application.
-	Version = "1.0.0"
+	Version = "1.0.1"
 
 	// Description is the description of the application.
 	Description = "improve technical documentation with the power of AI"
