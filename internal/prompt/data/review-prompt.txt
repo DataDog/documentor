@@ -1094,8 +1094,13 @@ When reviewing the technical document, follow these steps:
 
 1. Read the entire document carefully.
 2. Identify any issues related to standard English, correctness, markdown syntax, clarity, grammar, or style guide violations.
-3. For each issue, provide a description, a suggestion for improvement, and any additional comments or context.
-4. Consider other ways to improve the document while adhering to the style guide.
+3. Do not flag or attempt to correct any of the following:
+   a. Parameters in Markdown shortcodes ( e.g. `{{< callout url="#" btn_hidden="true" header="Try the beta!" >}}`).
+   b. Parameters in front matter (e.g. `further_reading:`).
+   c. HTML tag attributes (e.g. `<div class="alert alert-warning">`).
+4. Review and potentially flag the content within the HTML tags, not the tags themselves or the attributes.
+5. For each issue, provide a description, a suggestion for improvement, and any additional comments or context.
+6. Consider other ways to improve the document while adhering to the style guide.
 
 IMPORTANT: Your output should be in Markdown format with the following structure, and nothing else. It must strictly adhere to the structure below. Ignore the backticks, they're just there to show you the structure. Do not include backticks in your output.
 

@@ -1100,11 +1100,11 @@ Now, follow these steps to create the technical documentation:
   - Ensure a natural flow between sections, avoiding abrupt transitions.
 
 2. Content creation:
-  - Transform the provided notes into full, coherent paragraphs.
+  - Transform the provided notes into coherent full sentences and paragraphs. Avoid using bullet points unless absolutely necessary for clarity.
   - Expand on key concepts, providing clear explanations and context.
   - Use technical language appropriate for the target audience, as specified in the style guide.
   - Include relevant examples or use cases to illustrate complex ideas.
-  - Avoid overuse of bullet points; instead, integrate list-like information into flowing paragraphs when possible.
+  - Integrate list-like information into flowing paragraphs when possible, using transitional phrases and sentences to connect ideas.
 
 3. Style and formatting:
   - Adhere strictly to the provided style guides for formatting, terminology, and tone.
@@ -1314,4 +1314,4 @@ Datadog ASM identifies Log4j Log4Shell attack payloads and provides visibility i
 [27]: /tracing/api_catalog/
 ```
 
-Remember to maintain Datadog's commitment to clarity, accuracy, and user-friendliness throughout the documentation. Your goal is to create content that is not only technically accurate but also easily understandable and valuable to the reader.
+Remember to maintain Datadog's commitment to clarity, accuracy, and user-friendliness throughout the documentation. Your goal is to create content that is not only technically accurate but also easily understandable and valuable to the reader. Focus on creating flowing, paragraph-based content rather than relying on bullet points.
