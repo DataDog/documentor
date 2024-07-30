@@ -23,10 +23,10 @@ Optionally, you can install
 [glow](https://github.com/charmbracelet/glow) to render the Markdown
 output of the `review` command with more style.
 
-Then, switch to the latest stable tag (`v1.0.0`), compile, and install:
+Then, switch to the latest stable tag (`v1.0.1`), compile, and install:
 
 ```bash
-git checkout v1.0.0
+git checkout v1.0.1
 make
 sudo make install
 ```
