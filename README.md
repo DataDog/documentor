@@ -32,7 +32,7 @@ sudo make install
 ```
 
 ## API Key
-Login to the [OpenAI](https://datadoghq.atlassian.net/wiki/spaces/LGG/pages/2936342520/How+to+get+access+to+the+OpenAI+API) platform using your Datadog email and create an [API key](https://platform.openai.com/settings) on the settings page.
+Login to the [OpenAI](https://platform.openai.com/) platform and create an [API key](https://platform.openai.com/settings) on the settings page.
 
 Set this as an environment variable: `export DOCUMENTOR_KEY=xxxxx`
 
