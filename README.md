@@ -31,6 +31,11 @@ make
 sudo make install
 ```
 
+## API Key
+Login to the [OpenAI](https://platform.openai.com/) platform and create an [API key](https://platform.openai.com/settings) on the settings page.
+
+Set this as an environment variable: `export DOCUMENTOR_KEY=xxxxx`
+
 ## Usage
 
 ```bash
@@ -57,6 +62,9 @@ GLOBAL OPTIONS:
    --help, -h                     show help
    --version, -v                  print the version
 ```
+
+Example command:
+`documentor -k $DOCUMENTOR_KEY draft <name of file>`
 
 Refer to the _documentor(1)_ manpage after installation for more
 information.
