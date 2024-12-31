@@ -22,7 +22,7 @@ const ErrInvalidRequest xerrors.Error = "invalid request: must provide either an
 
 // DefaultModel is the default model to use when making requests to the
 // Anthropic API.
-const DefaultModel = "claude-3-5-sonnet-20240620"
+const DefaultModel = "claude-3-5-sonnet-latest"
 
 // Client represents an Anthropic API client that complies with the ai.Provider
 // interface.
