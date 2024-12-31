@@ -21,7 +21,7 @@ func NewRequest(ctx *cli.Context, req *ai.Request) anthropic.MessagesStreamReque
 
 	return anthropic.MessagesStreamRequest{
 		MessagesRequest: anthropic.MessagesRequest{
-			Model:       req.Model,
+			Model:       anthropic.Model(req.Model),
 			Temperature: &req.Temperature,
 			System:      req.SystemPrompt,
 			MaxTokens:   4096,
@@ -48,7 +48,7 @@ func NewRequest(ctx *cli.Context, req *ai.Request) anthropic.MessagesStreamReque
 func NewRequestWithImage(ctx *cli.Context, req *ai.Request) anthropic.MessagesStreamRequest {
 	return anthropic.MessagesStreamRequest{
 		MessagesRequest: anthropic.MessagesRequest{
-			Model:       req.Model,
+			Model:       anthropic.Model(req.Model),
 			Temperature: &req.Temperature,
 			System:      req.SystemPrompt,
 			MaxTokens:   4096,
@@ -57,7 +57,7 @@ func NewRequestWithImage(ctx *cli.Context, req *ai.Request) anthropic.MessagesSt
 				{
 					Role: anthropic.RoleUser,
 					Content: []anthropic.MessageContent{
-						anthropic.NewImageMessageContent(anthropic.MessageContentImageSource{
+						anthropic.NewImageMessageContent(anthropic.MessageContentSource{
 							Type:      "base64",
 							MediaType: "image/jpeg",
 							Data:      req.Image,
