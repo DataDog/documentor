@@ -1,2 +1,2 @@
-Origin,License,"License URL"{{ range . }}
+Origin,License,"License URL",Copyright{{ range . }}
 {{ .Name }},{{ .LicenseName }},{{ .LicenseURL }}{{ end }}
