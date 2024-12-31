@@ -1,6 +1,6 @@
 module github.com/DataDog/documentor
 
-go 1.22
+go 1.23
 
 require (
 	git.sr.ht/~jamesponddotco/xstd-go v0.8.0
