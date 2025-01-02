@@ -1,8 +1,8 @@
-Origin,License,"License URL"
-git.sr.ht/~jamesponddotco/xstd-go,MIT,https://git.sr.ht/~jamesponddotco/xstd-go/tree/v0.8.0/LICENSE.md
-github.com/cpuguy83/go-md2man/v2/md2man,MIT,https://github.com/cpuguy83/go-md2man/blob/v2.0.4/LICENSE.md
-github.com/liushuangls/go-anthropic/v2,Apache-2.0,https://github.com/liushuangls/go-anthropic/blob/v2.4.0/LICENSE
-github.com/russross/blackfriday/v2,BSD-2-Clause,https://github.com/russross/blackfriday/blob/v2.1.0/LICENSE.txt
-github.com/sashabaranov/go-openai,Apache-2.0,https://github.com/sashabaranov/go-openai/blob/v1.27.0/LICENSE
-github.com/urfave/cli/v2,MIT,https://github.com/urfave/cli/blob/v2.27.2/LICENSE
-github.com/xrash/smetrics,MIT,https://github.com/xrash/smetrics/blob/5f08fbb34913/LICENSE
+Origin,License,"License URL",Copyright
+git.sr.ht/~jamesponddotco/xstd-go,MIT,https://git.sr.ht/~jamesponddotco/xstd-go/tree/v0.8.0/LICENSE.md,2023 James Pond
+github.com/cpuguy83/go-md2man/v2/md2man,MIT,https://github.com/cpuguy83/go-md2man/blob/v2.0.4/LICENSE.md,2014 Brian Goff
+github.com/liushuangls/go-anthropic/v2,Apache-2.0,https://github.com/liushuangls/go-anthropic/blob/v2.4.0/LICENSE,2024 Liu Shuang
+github.com/russross/blackfriday/v2,BSD-2-Clause,https://github.com/russross/blackfriday/blob/v2.1.0/LICENSE.txt,2011 Russ Ross
+github.com/sashabaranov/go-openai,Apache-2.0,https://github.com/sashabaranov/go-openai/blob/v1.27.0/LICENSE,2020 Alex Baranov
+github.com/urfave/cli/v2,MIT,https://github.com/urfave/cli/blob/v2.27.2/LICENSE,2023 urfave/cli maintainers
+github.com/xrash/smetrics,MIT,https://github.com/xrash/smetrics/blob/5f08fbb34913/LICENSE,2016 Felipe da Cunha Gonçalves
