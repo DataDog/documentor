@@ -15,7 +15,7 @@ focus on the content and structure of the document itself.
 
 First, ensure that the following dependencies are installed:
 
-- Go 1.22 or above.
+- Go 1.24 or above.
 - make.
 - [scdoc](https://git.sr.ht/~sircmpwn/scdoc).
 
