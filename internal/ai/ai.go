@@ -12,6 +12,7 @@ import "github.com/urfave/cli/v2"
 const (
 	ProviderOpenAI    string = "openai"
 	ProviderAnthropic string = "anthropic"
+	ProviderDatadog   string = "datadog"
 )
 
 // Provider represents an LLM provider such as OpenAI, Anthropic, Mistral, etc.
