@@ -45,6 +45,14 @@ func Run(args []string) int {
 			},
 		},
 		&cli.StringFlag{
+			Name:    "endpoint",
+			Aliases: []string{"e"},
+			Usage:   "the API endpoint to use (currently only used for the Datadog provider)",
+			EnvVars: []string{
+				"DOCUMENTOR_ENDPOINT",
+			},
+		},
+		&cli.StringFlag{
 			Name:    "model",
 			Aliases: []string{"m"},
 			Usage:   "the AI model to use",
