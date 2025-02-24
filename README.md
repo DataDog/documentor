@@ -15,7 +15,7 @@ focus on the content and structure of the document itself.
 
 First, ensure that the following dependencies are installed:
 
-- Go 1.22 or above.
+- Go 1.24 or above.
 - make.
 - [scdoc](https://git.sr.ht/~sircmpwn/scdoc).
 
@@ -30,11 +30,6 @@ git checkout v1.0.1
 make
 sudo make install
 ```
-
-## API Key
-Login to the [OpenAI](https://platform.openai.com/) platform and create an [API key](https://platform.openai.com/settings) on the settings page.
-
-Set this as an environment variable: `export DOCUMENTOR_KEY=xxxxx`
 
 ## Usage
 
@@ -63,8 +58,68 @@ GLOBAL OPTIONS:
    --version, -v                  print the version
 ```
 
-Example command:
-`documentor -k $DOCUMENTOR_KEY draft <name of file>`
+### Examples
+
+**1. Review a documentation file using the default provider, OpenAI:**
+
+```bash
+documentor --key 'your-openai-api-key' review '/path/to/file.md'
+```
+
+**2. Review a documentation file with the API key set in the environment:**
+
+```bash
+export DOCUMENTOR_KEY='your-openai-api-key'
+documentor review '/path/to/file.md'
+```
+
+**3. Save the output to a file:**
+
+```bash
+documentor review '/path/to/file.md' >> review.md
+```
+
+**4. Format the default Markdown output with glow:**
+
+```bash
+documentor review '/path/to/file.md' | glow
+```
+
+**5. Describe an image:**
+
+```bash
+documentor describe '/path/to/image.png'
+```
+
+**6. Describe an image with context:**
+
+```bash
+documentor describe --context 'This my cat, Mittens.' '/path/to/image.png'
+```
+
+**7. Describe an image and generate a filename for the image:**
+
+```bash
+documentor describe --filename '/path/to/image.png'
+```
+
+**8. Draft a document based on your notes:**
+
+```bash
+documentor draft '/path/to/notes/file.md'
+```
+
+**9. Draft a document using Anthropic as the AI provider:**
+
+```bash
+documentor --provider 'anthropic' --key 'your-anthropic-api-key' draft '/path/to/notes/file.md'
+```
+
+**10. Review a document using a different LLM model:**
+
+```bash
+documentor --model 'o3-mini' review '/path/to/file.md'
+```
 
 Refer to the _documentor(1)_ manpage after installation for more
 information.
