@@ -14,6 +14,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/ai"
 	"github.com/DataDog/documentor/internal/ai/anthropic"
+	"github.com/DataDog/documentor/internal/ai/datadog"
 	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/prompt"
@@ -47,13 +48,18 @@ func ReviewAction(ctx *cli.Context) error {
 		key         = ctx.String("key")
 		model       = ctx.String("model")
 		provider    = ctx.String("provider")
+		endpoint    = ctx.String("endpoint")
 		temperature = ctx.Float64("temperature")
 		file        = ctx.Args().Get(0)
 		client      ai.Provider
 	)
 
-	if !validate.Key(key) {
+	if provider != ai.ProviderDatadog && !validate.Key(key) {
 		return errno.New(errno.ExitUnauthorized, ErrInvalidAPIKey)
+	}
+
+	if provider == ai.ProviderDatadog && endpoint == "" {
+		return errno.New(errno.ExitInvalidInput, ErrMissingDatadogEndpoint)
 	}
 
 	if !validate.Filetype(file, []string{"txt", "md"}) {
@@ -71,6 +77,12 @@ func ReviewAction(ctx *cli.Context) error {
 
 		if model == openai.DefaultModel {
 			model = anthropic.DefaultModel
+		}
+	case ai.ProviderDatadog:
+		client = datadog.NewClient(endpoint, key)
+
+		if model == openai.DefaultModel {
+			model = datadog.DefaultModel
 		}
 	default:
 		return errno.New(errno.ExitInvalidInput, ErrInvalidProvider)

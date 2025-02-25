@@ -14,6 +14,7 @@ import (
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/ai"
 	"github.com/DataDog/documentor/internal/ai/anthropic"
+	"github.com/DataDog/documentor/internal/ai/datadog"
 	"github.com/DataDog/documentor/internal/ai/openai"
 	"github.com/DataDog/documentor/internal/errno"
 	"github.com/DataDog/documentor/internal/prompt"
@@ -37,6 +38,10 @@ const (
 	// ErrInvalidProvider is the error message when the describe command is
 	// invoked with an invalid AI provider.
 	ErrInvalidProvider xerrors.Error = "invalid AI provider; please refer to the documentation for a list of valid providers"
+
+	// ErrMissingDatadogEndpoint is the error message when any command is
+	// invoked with the Datadog provider but without an endpoint.
+	ErrMissingDatadogEndpoint xerrors.Error = "missing API endpoint; please refer to the internal documentation for the correct endpoint"
 )
 
 // DescribeAction is the action to perform when the describe command is invoked.
@@ -53,6 +58,7 @@ func DescribeAction(ctx *cli.Context) error {
 		key         = ctx.String("key")
 		model       = ctx.String("model")
 		provider    = ctx.String("provider")
+		endpoint    = ctx.String("endpoint")
 		context     = ctx.String("context")
 		temperature = ctx.Float64("temperature")
 		filename    = ctx.Bool("filename")
@@ -60,8 +66,12 @@ func DescribeAction(ctx *cli.Context) error {
 		client      ai.Provider
 	)
 
-	if !validate.Key(key) {
+	if provider != ai.ProviderDatadog && !validate.Key(key) {
 		return errno.New(errno.ExitUnauthorized, ErrInvalidAPIKey)
+	}
+
+	if provider == ai.ProviderDatadog && endpoint == "" {
+		return errno.New(errno.ExitInvalidInput, ErrMissingDatadogEndpoint)
 	}
 
 	if !validate.Filetype(file, []string{"png", "jpg", "jpeg", "gif"}) {
@@ -79,6 +89,12 @@ func DescribeAction(ctx *cli.Context) error {
 
 		if model == openai.DefaultModel {
 			model = anthropic.DefaultModel
+		}
+	case ai.ProviderDatadog:
+		client = datadog.NewClient(endpoint, key)
+
+		if model == openai.DefaultModel {
+			model = datadog.DefaultModel
 		}
 	default:
 		return errno.New(errno.ExitInvalidInput, ErrInvalidProvider)
