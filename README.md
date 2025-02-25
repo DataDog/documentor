@@ -23,10 +23,10 @@ Optionally, you can install
 [glow](https://github.com/charmbracelet/glow) to render the Markdown
 output of the `review` command with more style.
 
-Then, switch to the latest stable tag (`v1.0.1`), compile, and install:
+Then, switch to the latest stable tag (`v1.1.0`), compile, and install:
 
 ```bash
-git checkout v1.0.1
+git checkout v1.1.0
 make
 sudo make install
 ```
@@ -36,13 +36,13 @@ sudo make install
 ```bash
 $ documentor --help
 NAME:
-   documentor - review technical documentation with the power of AI
+   documentor - improve technical documentation with the power of AI
 
 USAGE:
    documentor [global options] command [command options]
 
 VERSION:
-   0.1.0
+   1.1.0
 
 COMMANDS:
    review, r    review technical documentation
@@ -52,6 +52,7 @@ COMMANDS:
 GLOBAL OPTIONS:
    --key value, -k value          the API key to use [$DOCUMENTOR_KEY]
    --provider value, -p value     the AI provider to use (default: "openai") [$DOCUMENTOR_PROVIDER]
+   --endpoint value, -e value     the API endpoint to use (currently only used for the Datadog provider) [$DOCUMENTOR_ENDPOINT]
    --model value, -m value        the AI model to use (default: "gpt-4o") [$DOCUMENTOR_MODEL]
    --temperature value, -t value  the temperature to use for the model (default: 0.8) [$DOCUMENTOR_TEMPERATURE]
    --help, -h                     show help
