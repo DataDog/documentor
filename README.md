@@ -33,6 +33,10 @@ sudo make install
 
 ## Usage
 
+> [!NOTE] 
+> If you're a Datadog employee, please follow [the documentation in
+> Confluence](https://datadoghq.atlassian.net/wiki/spaces/Cloudcraft/pages/4780427137/Using+Documentor).
+
 ```bash
 $ documentor --help
 NAME:
