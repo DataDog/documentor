@@ -43,7 +43,7 @@ func NewClient(endpoint, email string) *Client {
 		Transport: &Transport{
 			Email: email,
 		},
-		Timeout: 15 * time.Second,
+		Timeout: 1 * time.Minute,
 	}
 
 	return &Client{
