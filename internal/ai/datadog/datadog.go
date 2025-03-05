@@ -8,12 +8,15 @@
 package datadog
 
 import (
+	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"time"
 
 	"git.sr.ht/~jamesponddotco/xstd-go/xerrors"
 	"github.com/DataDog/documentor/internal/ai"
+	"github.com/DataDog/documentor/internal/errno"
 	"github.com/sashabaranov/go-openai"
 	"github.com/urfave/cli/v2"
 )
@@ -40,7 +43,7 @@ func NewClient(endpoint, email string) *Client {
 		Transport: &Transport{
 			Email: email,
 		},
-		Timeout: 15 * time.Second,
+		Timeout: 1 * time.Minute,
 	}
 
 	return &Client{
@@ -71,12 +74,25 @@ func (c *Client) Do(ctx *cli.Context, request *ai.Request) error {
 		return ErrInvalidRequest
 	}
 
-	resp, err := c.ai.CreateChatCompletion(ctx.Context, req)
+	resp, err := c.ai.CreateChatCompletionStream(ctx.Context, req)
 	if err != nil {
 		return fmt.Errorf("%w", err)
 	}
 
-	fmt.Fprintf(ctx.App.Writer, "%s\n", resp.Choices[0].Message.Content)
+	for {
+		text, err := resp.Recv() //nolint:govet // Fixing this is more trouble than it's worth.
+		if errors.Is(err, io.EOF) {
+			fmt.Fprintf(ctx.App.Writer, "\n")
+
+			break
+		}
+
+		if err != nil {
+			return errno.New(errno.ExitAPIError, fmt.Errorf("failed to get response: %w", err))
+		}
+
+		fmt.Fprintf(ctx.App.Writer, "%s", text.Choices[0].Delta.Content)
+	}
 
 	return nil
 }

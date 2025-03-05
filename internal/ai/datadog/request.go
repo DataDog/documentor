@@ -20,6 +20,7 @@ func NewRequest(req *ai.Request) openai.ChatCompletionRequest {
 	return openai.ChatCompletionRequest{
 		Model:       req.Model,
 		Temperature: req.Temperature,
+		Stream:      true,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleUser,
@@ -46,6 +47,7 @@ func NewRequestWithImage(req *ai.Request) openai.ChatCompletionRequest {
 	return openai.ChatCompletionRequest{
 		Model:       req.Model,
 		Temperature: req.Temperature,
+		Stream:      true,
 		Messages: []openai.ChatCompletionMessage{
 			{
 				Role:    openai.ChatMessageRoleUser,
