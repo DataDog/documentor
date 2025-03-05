@@ -23,10 +23,10 @@ Optionally, you can install
 [glow](https://github.com/charmbracelet/glow) to render the Markdown
 output of the `review` command with more style.
 
-Then, switch to the latest stable tag (`v1.1.0`), compile, and install:
+Then, switch to the latest stable tag (`v1.2.0`), compile, and install:
 
 ```bash
-git checkout v1.1.0
+git checkout v1.2.0
 make
 sudo make install
 ```
@@ -46,7 +46,7 @@ USAGE:
    documentor [global options] command [command options]
 
 VERSION:
-   1.1.0
+   1.2.0
 
 COMMANDS:
    review, r    review technical documentation
