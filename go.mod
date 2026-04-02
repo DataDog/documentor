@@ -2,6 +2,8 @@ module github.com/DataDog/documentor
 
 go 1.24
 
+toolchain go1.26.1
+
 require (
 	git.sr.ht/~jamesponddotco/xstd-go v0.8.0
 	github.com/liushuangls/go-anthropic/v2 v2.13.1
