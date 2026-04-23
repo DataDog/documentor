@@ -1,5 +1,5 @@
-git.sr.ht/~jamesponddotco/xstd-go v0.8.0 h1:2FcwEvLunzTL/tSvlcs+pO60O8rlkIcr8bSoJWuT2W0=
-git.sr.ht/~jamesponddotco/xstd-go v0.8.0/go.mod h1:L0SjmhDqcj/gR7oeNof+ed6l9VPk6oHPeNQSoaFBRFk=
+git.sr.ht/~jamesponddotco/xstd-go v0.13.1 h1:WSx3We/VOiZU9ohxxHXOoG48ZTp7RNMd+rY+/qlooXQ=
+git.sr.ht/~jamesponddotco/xstd-go v0.13.1/go.mod h1:2ImaAMHwlIUZQG4RDk7utC9ZG5HL+l6uQ3pwMjq1Q5s=
 github.com/cpuguy83/go-md2man/v2 v2.0.5 h1:ZtcqGrnekaHpVLArFSe4HK5DoKx1T0rq2DwVB0alcyc=
 github.com/cpuguy83/go-md2man/v2 v2.0.5/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/liushuangls/go-anthropic/v2 v2.13.1 h1:RiLr5Ec7gDFu3BFiT/I65mdUI3+OxSjSHooqY/VLJ+Y=
